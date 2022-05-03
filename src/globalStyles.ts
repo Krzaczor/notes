@@ -34,7 +34,7 @@ const GlobalStyles = createGlobalStyle`
 
         --radius: 5px;
         --radius-round: 100px;
-        --padding-container: 20px;
+        --padding-container: 10px;
     }
 
     body {

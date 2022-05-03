@@ -1,8 +1,10 @@
 import { ReactNode } from 'react';
 
 export interface Props {
-    variant?: 'primary' | 'second' | 'outline-danger';
+    children: ReactNode;
+    variant?: 'primary' | 'second' | 'outline-danger' | 'dark';
     size?: 'normal' | 'lg';
     fluid?: boolean;
-    children: ReactNode
+    as?: 'a';
+    href?: string;
 }

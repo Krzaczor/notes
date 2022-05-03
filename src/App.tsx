@@ -1,4 +1,5 @@
 import Navigation from './components/navigation/Navigation';
+import NotesLayout from './components/notesLayout/NotesLayout';
 import GlobalStyles from './globalStyles';
 
 function App() {
@@ -6,6 +7,7 @@ function App() {
       <>
         <GlobalStyles />
         <Navigation />
+        <NotesLayout />
       </>
   );
 }

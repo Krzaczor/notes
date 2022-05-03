@@ -14,6 +14,10 @@ const variants = {
         border-color: var(--color-danger);
         color: var(--color-text);
     `,
+    'dark': css`
+        background-color: var(--color-background-darkest);
+        color: var(--color-text);
+    `,
 }
 
 const sizes = {
@@ -39,7 +43,10 @@ export const Button = styled.button<Props>`
     cursor: pointer;
     display: inline-block;
     font-size: 1rem;
+    min-width: 40px;
     padding: 0.5rem;
+    text-decoration: none;
+    text-align: center;
     vertical-align: middle;
 
     & svg {
