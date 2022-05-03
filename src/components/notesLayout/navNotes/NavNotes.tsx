@@ -1,4 +1,4 @@
-import Button from '../../shared/button/Button';
+import Button from 'components/shared/button/Button';
 import * as S from './NavNotes.styles';
 
 const NavNotes = () => {
