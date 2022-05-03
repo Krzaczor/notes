@@ -1,11 +1,12 @@
 import NavNotes from './navNotes/NavNotes';
-import * as S from './NotesLayout.styles';
+import NotesList from './notesList/NotesList';
 
 const NotesLayout = () => {
     return (
-        <S.NotesLayout>
+        <main>
             <NavNotes />
-        </S.NotesLayout>
+            <NotesList />
+        </main>
     );
 }
 
