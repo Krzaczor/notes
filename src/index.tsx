@@ -1,6 +1,7 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { SettingsProvider } from 'context/settingsContext';
+import { CategoriesProvider } from 'context/categoriesContext';
 import { NotesProvider } from 'context/notesContext';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -11,9 +12,11 @@ const root = createRoot(
 root.render(
     <StrictMode>
         <SettingsProvider>
-            <NotesProvider>
-                <App />
-            </NotesProvider>
+            <CategoriesProvider>
+                <NotesProvider>
+                    <App />
+                </NotesProvider>
+            </CategoriesProvider>
         </SettingsProvider>
     </StrictMode>
 );
