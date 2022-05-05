@@ -26,7 +26,10 @@ export type RemoverNote = Note['id'];
 export interface Settings {
     lightMode: boolean;
     defaultPriority: boolean;
-    displayCreateAtNode: boolean;
+    displayCreateAtNote: boolean;
 }
 
-export type UpdateSettings = Settings;
+export type UpdateSettings = keyof Settings;
+
+export type ErrorStorage = string | null;
+export type ResetErrorAction = () => void;

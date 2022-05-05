@@ -1,5 +1,6 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
+import { SettingsProvider } from 'context/settingsContext';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
@@ -8,7 +9,9 @@ const root = createRoot(
 );
 root.render(
   <StrictMode>
-    <App />
+      <SettingsProvider>
+        <App />
+      </SettingsProvider>
   </StrictMode>
 );
 
