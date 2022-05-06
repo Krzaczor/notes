@@ -1,15 +1,10 @@
+import { useNotesState } from 'context/notesContext';
 import NoteItem from './noteItem/NoteItem';
 import * as S from './NotesList.styles';
 
-const notes = Array.from({ length: 15 }, (_, index) => ({
-    id: (index + 1).toString(),
-    content: 'zdanie do zrobienia',
-    createAt: Date.now(),
-    done: null,
-    priority: false,
-}));
-
 const NotesList = () => {
+    const { notes } = useNotesState();
+
     return (
         <S.NotesList>
             {notes.map((note) => (

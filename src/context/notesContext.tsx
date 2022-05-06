@@ -49,7 +49,7 @@ export const NotesProvider = ({ children }: NotesProps) => {
     const updateOneNote: UpdateOneNoteAction = (id, fields) => {
         setNotes(prevNotes => {
             return prevNotes.map(note => {
-                return note.id === id ? note : Object.assign(note, fields);
+                return note.id !== id ? note : Object.assign(note, fields);
             })
         })
     }

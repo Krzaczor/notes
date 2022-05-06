@@ -1,13 +1,27 @@
-import { FC } from 'react';
+import { useNotesActions } from 'context/notesContext';
+import { Note } from 'types';
 import * as S from './NoteItem.styles';
-import { Note } from './NoteItem.types';
 
-const NoteItem: FC<Note> = () => {
+const NoteItem = ({ id, content, done, priority }: Note) => {
+    const { updateOneNote } = useNotesActions();
+
+    const handleToggleDoneNote = () => {
+        updateOneNote(id, {
+            done: !!done ? null : new Date()
+        })
+    }
+
+    const handleTogglePriorityNote = () => {
+        updateOneNote(id, {
+            priority: !priority
+        })
+    }
+
     return (
         <S.NoteItem>
-            <input type='checkbox' />
-            <input type='checkbox' />
-            <p style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>zadanie do zrobienia fjijid fiosf jsf sfjd iosaiosaiosa a s</p>
+            <input type='checkbox' checked={!!done} onChange={handleToggleDoneNote} />
+            <input type='checkbox' checked={priority} onChange={handleTogglePriorityNote} />
+            <p style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{ content }</p>
         </S.NoteItem>
     )
 }
