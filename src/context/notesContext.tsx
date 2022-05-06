@@ -35,14 +35,14 @@ export const NotesProvider = ({ children }: NotesProps) => {
         setNotesStorage(notes);
     }, [notes]);
 
-    const createNote: CreateNoteAction = ({ content, category }) => {
+    const createNote: CreateNoteAction = ({ content, category, priority }) => {
         setNotes(prevNotes => prevNotes.concat({
             id: nanoid(8),
             createAt: new Date(),
             done: null,
-            priority: false,
-            category: category.toString(),
-            content: content.toString(),
+            priority,
+            category,
+            content,
         }))
     }
 
