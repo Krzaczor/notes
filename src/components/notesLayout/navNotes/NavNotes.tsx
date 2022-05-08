@@ -5,9 +5,9 @@ const NavNotes = () => {
     return (
         <S.NavNotes>
             <Button variant='second'>b</Button>
-            <Button as='a' href='#'>ogółem</Button>
-            <Button as='a' href='#' variant='dark'>nie zrobione</Button>
-            <Button as='a' href='#'>ważne</Button>
+            <S.Link to='/all' replace>ogółem</S.Link>
+            <S.Link to='/undone' replace>nie zrobione</S.Link>
+            <S.Link to='/priority' replace>ważne</S.Link>
         </S.NavNotes>
     );
 }
