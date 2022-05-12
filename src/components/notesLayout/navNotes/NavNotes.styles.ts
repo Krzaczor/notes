@@ -1,15 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
-export const NavNotes = styled.nav`
-    background-color: var(--color-background-middle);
-    padding: 10px var(--padding-container);
-
-    & > *:not(:last-child) {
-        margin-right: 10px;
-    }
-`;
-
 export const Link = styled(NavLink)`
     background-color: transparent;
     border: 1px solid transparent;
