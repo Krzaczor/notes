@@ -21,7 +21,7 @@ const NoteItem = ({ id, content, done, priority }: Note) => {
         <S.NoteItem>
             <input type='checkbox' checked={!!done} onChange={handleToggleDoneNote} />
             <input type='checkbox' checked={priority} onChange={handleTogglePriorityNote} />
-            <p style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{ content }</p>
+            <S.NoteLink to={`/${id}`}>{ content }</S.NoteLink>
         </S.NoteItem>
     )
 }
