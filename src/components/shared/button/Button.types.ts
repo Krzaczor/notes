@@ -7,4 +7,5 @@ export interface Props {
     fluid?: boolean;
     as?: 'a';
     href?: string;
+    onClick?: () => void;
 }
