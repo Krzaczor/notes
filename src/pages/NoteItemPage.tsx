@@ -82,6 +82,7 @@ const NoteItemPage = () => {
     const { notes } = useNotesState();
     const { noteId } = useParams();
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     const note = useMemo(() => notes.find(note => note.id === noteId), []);
 
     return (
