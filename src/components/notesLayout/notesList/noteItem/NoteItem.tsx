@@ -21,7 +21,10 @@ const NoteItem = ({ id, content, done, priority }: Note) => {
         <S.NoteItem>
             <input type='checkbox' checked={!!done} onChange={handleToggleDoneNote} />
             <input type='checkbox' checked={priority} onChange={handleTogglePriorityNote} />
-            <S.NoteLink to={`/${id}`}>{ content }</S.NoteLink>
+            <S.NoteLink
+                to={`/${id}`}
+                state={{ prevLocation: window.location.pathname }}
+            >{ content }</S.NoteLink>
         </S.NoteItem>
     )
 }

@@ -1,5 +1,4 @@
-import { useMemo } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import { useNotesActions, useNotesState } from 'context/notesContext';
 import Actions from 'components/shared/actions/Actions';
 import Button from 'components/shared/button/Button';
@@ -11,17 +10,18 @@ interface Props {
     note: Note;
 }
 
+interface StateLocation {
+    prevLocation: string | null;
+}
+
 const NoteActions = ({ note }: Props) => {
     const { removeOneNote, updateOneNote } = useNotesActions();
-    const navigate = useNavigate();
+    const location = useLocation();
 
-    const handleBack = () => {
-        navigate(-1);
-    };
+    const prevLocation = (location.state as StateLocation)?.prevLocation || '/all';
 
     const handleRemoveNote = () => {
         removeOneNote(note.id);
-        handleBack();
     }
 
     const handleToggleDoneNote = () => {
@@ -38,7 +38,7 @@ const NoteActions = ({ note }: Props) => {
 
     return (
         <Actions>
-            <Button variant='second' onClick={handleBack}>b</Button>
+            <Link to={prevLocation}>b</Link>
             <Button variant='second' onClick={handleToggleDoneNote}>
                 {note.done ? 'd' : 'nd'}
             </Button>
@@ -46,25 +46,19 @@ const NoteActions = ({ note }: Props) => {
                 {/* p = priority, np = not priority */}
                 {note.priority ? 'p' : 'np'}
             </Button>
-            <Button variant='second' onClick={handleRemoveNote}>
+            <Link to={prevLocation} onClick={handleRemoveNote}>
                 {/* r = remove */}
                 r
-            </Button>
+            </Link>
         </Actions>
     )
 }
 
 const NoteNotFound = () => {
-    const navigate = useNavigate();
-
-    const handleBack = () => {
-        navigate('/all');
-    };
-
     return (
         <div style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', gap: '15px'}}>
             <p>Niestety nie znaleźliśmy Twojej notatki :(</p>
-            <Button variant='dark' onClick={handleBack}>wróć</Button>
+            <Link to="/all">wróć</Link>
         </div>
     )
 }
@@ -82,8 +76,7 @@ const NoteItemPage = () => {
     const { notes } = useNotesState();
     const { noteId } = useParams();
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    const note = useMemo(() => notes.find(note => note.id === noteId), []);
+    const note = notes.find(note => note.id === noteId);
 
     return (
         <Main>
