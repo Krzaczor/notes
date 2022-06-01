@@ -1,14 +1,10 @@
-import Button from 'components/shared/button/Button';
-import CategoryName from 'components/categoryName/CategoryName';
+import { Props } from './Navigation.types';
 import * as S from './Navigation.styles';
 
-function Navigation() {
+const Navigation = ({ children }: Props) => {
     return (
         <S.Navigation>
-            <Button variant='second'>s</Button>
-            <CategoryName />
-            <Button variant='second'>s</Button>
-            <Button variant='second'>s</Button>
+            { children }
         </S.Navigation>
     )
 }
