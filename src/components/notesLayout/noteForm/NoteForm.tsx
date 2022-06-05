@@ -2,6 +2,7 @@ import { ChangeEvent, FormEvent, useState } from 'react';
 import { useNotesActions } from 'context/notesContext';
 import { useSettingsState } from 'context/settingsContext';
 import Button from 'components/shared/button/Button';
+import Input from 'components/shared/input/Input';
 import * as S from './NoteForm.styles';
 
 const TEMP_CATEGORY = 'H3jdiisa';
@@ -29,7 +30,12 @@ const NoteForm = () => {
 
     return (
         <S.NoteForm onSubmit={handleSubmit}>
-            <S.Input type='text' placeholder='Treść nowej notki' value={contentValue} onChange={handleChangeContentValue} />
+            <Input
+                type='text'
+                placeholder='Treść nowej notki'
+                value={contentValue}
+                onChange={handleChangeContentValue}
+            />
             <Button variant='primary'>a</Button>
         </S.NoteForm>
     )
