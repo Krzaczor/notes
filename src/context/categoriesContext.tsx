@@ -42,11 +42,11 @@ export const CategoriesProvider = ({ children }: CategoriesProps) => {
         setCategoriesStorage(categories);
     }, [categories]);
 
-    const createCategory: CreateCategoryAction = (name) => {
+    const createCategory: CreateCategoryAction = (category) => {
         setCategories(prevCategories => prevCategories.concat({
             id: nanoid(8),
             createAt: new Date(),
-            name: name.toString(),
+            name: category.name,
         }))
     }
 
