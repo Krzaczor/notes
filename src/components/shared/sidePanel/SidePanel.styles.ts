@@ -5,7 +5,6 @@ export const SidePanel = styled(animated.div)`
     background-color: var(--color-background-middle);
     color: var(--color-text);
     height: 100%;
-    padding: var(--padding-container);
     position: absolute;
     width: 330px;
     z-index: 10;
