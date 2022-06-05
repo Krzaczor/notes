@@ -22,10 +22,12 @@ const positions = {
     left: {
         left: 0,
         top: 0,
+        borderRight: '1px solid var(--color-background-darkest)'
     },
     right: {
         right: 0,
         top: 0,
+        borderLeft: '1px solid var(--color-background-darkest)'
     }
 }
 
