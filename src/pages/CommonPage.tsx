@@ -7,7 +7,7 @@ import { useCategory } from 'hooks/useCategory';
 
 const CommonPage = () => {
     const [canShowPanelCategories, setCanShowPanelCategories] = useState(false);
-    const { categoryId } = useCategory();
+    const { categoryId, currentCategory } = useCategory();
 
     const showPanelCategories = () => {
         setCanShowPanelCategories(true);
@@ -31,8 +31,7 @@ const CommonPage = () => {
             </PanelCategories>
             <Navigation>
                 <Button variant='second' onClick={showPanelCategories}>s</Button>
-                <CategoryName />
-                <Button variant='second'>s</Button>
+                <CategoryName category={currentCategory} />
                 <Button variant='second'>s</Button>
             </Navigation>
         </>
