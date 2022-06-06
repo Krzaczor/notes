@@ -4,6 +4,8 @@ import { animated } from 'react-spring';
 export const SidePanel = styled(animated.div)`
     background-color: var(--color-background-middle);
     color: var(--color-text);
+    display: flex;
+    flex-direction: column;
     height: 100%;
     position: absolute;
     width: 330px;
