@@ -1,15 +1,20 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
+import { getUrlCategory } from 'utils/getUrlCategory';
+import { useNotesActions, useNotesState } from 'context/notesContext';
+import { useCategory } from 'hooks/useCategory';
 import Actions from 'components/shared/actions/Actions';
 import Button from 'components/shared/button/Button';
 import MoreOptions from 'components/moreOptions/MoreOptions';
 import * as S from './NavNotes.styles';
-import { useNotesActions, useNotesState } from 'context/notesContext';
 
 const NavNotes = () => {
     const [showMoreOptions, setShowMoreOptions] = useState(false);
     const { notes } = useNotesState();
     const { updateManyNotes, removeManyNotes } = useNotesActions();
     const btnRef = useRef<HTMLButtonElement>(null!);
+    const { categoryId } = useCategory();
+
+    const currentNoteIds = notes.map(note => note.id);
 
     const handleToggleMoreOptions = () => {
         setShowMoreOptions(prev => !prev);
@@ -20,37 +25,28 @@ const NavNotes = () => {
     }
 
     const handleRemoveAllNotes = () => {
-        handleCloseMoreOptions();
-        removeManyNotes(notes.map(note => note.id));
+        removeManyNotes(currentNoteIds);
     }
 
     const handlePriorityAllNotes = () => {
-        handleCloseMoreOptions();
-        updateManyNotes(notes.map(note => note.id), {
-            priority: true
-        });
+        updateManyNotes(currentNoteIds, { priority: true });
     }
 
     const handleUnpriorityAllNotes = () => {
-        handleCloseMoreOptions();
-        updateManyNotes(notes.map(note => note.id), {
-            priority: false
-        });
+        updateManyNotes(currentNoteIds, { priority: false });
     }
 
     const handleDoneAllNotes = () => {
-        handleCloseMoreOptions();
-        updateManyNotes(notes.map(note => note.id), {
-            done: new Date()
-        });
+        updateManyNotes(currentNoteIds, { done: new Date() });
     }
 
     const handleUndoneAllNotes = () => {
-        handleCloseMoreOptions();
-        updateManyNotes(notes.map(note => note.id), {
-            done: null
-        });
+        updateManyNotes(currentNoteIds, { done: null });
     }
+
+    useEffect(() => {
+        handleCloseMoreOptions();
+    }, [notes]);
 
     return (
         <Actions>
@@ -69,9 +65,9 @@ const NavNotes = () => {
                 <Button onClick={handleDoneAllNotes}>zrobione</Button>
                 <Button onClick={handleUndoneAllNotes}>niezrobione</Button>
             </MoreOptions>
-            <S.Link to='/all' replace>ogółem</S.Link>
-            <S.Link to='/undone' replace>nie zrobione</S.Link>
-            <S.Link to='/priority' replace>ważne</S.Link>
+            <S.Link to={getUrlCategory('/all', categoryId)} replace>ogółem</S.Link>
+            <S.Link to={getUrlCategory('/undone', categoryId)} replace>nie zrobione</S.Link>
+            <S.Link to={getUrlCategory('/priority', categoryId)} replace>ważne</S.Link>
         </Actions>
     );
 }
