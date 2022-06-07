@@ -32,7 +32,7 @@ const positions = {
 }
 
 const config = {
-    duration: 200,
+    duration: 150,
     easing: easings.linear,
 }
 
