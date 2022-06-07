@@ -22,10 +22,7 @@ const CategoryItem = ({ category, currentCategory }: Props) => {
             >
                 { category.name }
             </Link>
-            {!category.default && (
-                <Button onClick={handlerRemoveCategory}>u</Button>
-            )}
-            
+            <Button onClick={handlerRemoveCategory}>u</Button>
         </S.CategoryItem>
     )
 }

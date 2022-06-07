@@ -15,16 +15,7 @@ import { ErrorStorage, ResetErrorAction, CategoryList } from 'types';
 const CategoriesContextState = createContext<CategoriesState>(null!);
 const CategoriesContextActions = createContext<CategoriesActions>(null!);
 
-const defaultCategories: CategoryList = [
-    {
-        id: nanoid(8),
-        createAt: new Date(),
-        name: 'Wszystkie notatki',
-        default: true
-    }
-];
-
-const initCategories: CategoryList = [...defaultCategories];
+const initCategories: CategoryList = [];
 
 export const CategoriesProvider = ({ children }: CategoriesProps) => {
     const [error, setError] = useState<ErrorStorage>(null);
@@ -53,7 +44,7 @@ export const CategoriesProvider = ({ children }: CategoriesProps) => {
     const updateOneCategory: UpdateOneCategoryAction = (id, fields) => {
         setCategories(prevCategories => {
             return prevCategories.map(category => {
-                if (category.id === id && !category?.default) {
+                if (category.id === id) {
                     return Object.assign(category, fields);
                 }
 
@@ -65,7 +56,7 @@ export const CategoriesProvider = ({ children }: CategoriesProps) => {
     const removeOneCategory: RemoveOneCategoryAction = (id) => {
         setCategories(prevCategories => {
             return prevCategories.filter(category => {
-                return category.id !== id || category?.default;
+                return category.id !== id;
             });
         });
     }

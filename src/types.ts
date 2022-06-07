@@ -2,7 +2,6 @@ export interface Category {
     id: string;
     name: string;
     createAt: Date;
-    default?: true;
 }
 
 export type CategoryList = Category[];

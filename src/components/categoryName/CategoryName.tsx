@@ -57,14 +57,6 @@ const CategoryName = ({ category }: Props) => {
         return <S.CategoryName />;
     }
 
-    if (category.default) {
-        return (
-            <S.CategoryName>
-                { category.name }
-            </S.CategoryName>
-        )
-    }
-
     if (isEdit) {
         return (
             <CategoryNameEdit
