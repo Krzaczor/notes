@@ -5,9 +5,11 @@ import Button from 'components/shared/button/Button';
 import Input from 'components/shared/input/Input';
 import * as S from './NoteForm.styles';
 
-const TEMP_CATEGORY = 'H3jdiisa';
+interface Props {
+    category: string;
+}
 
-const NoteForm = () => {
+const NoteForm = ({ category }: Props) => {
     const [contentValue, setContentValue] = useState('');
     const { settings } = useSettingsState();
     const { createNote } = useNotesActions();
@@ -20,8 +22,8 @@ const NoteForm = () => {
         event.preventDefault();
 
         createNote({
+            category,
             content: contentValue,
-            category: TEMP_CATEGORY,
             priority: settings.defaultPriority
         });
 
