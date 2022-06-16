@@ -1,9 +1,11 @@
+import { useLocation } from 'react-router-dom';
 import { useNotesActions } from 'context/notesContext';
-import { Note } from 'types';
 import * as S from './NoteItem.styles';
+import { Note } from 'types';
 
 const NoteItem = ({ id, content, done, priority }: Note) => {
     const { updateOneNote } = useNotesActions();
+    const { pathname, search } = useLocation();
 
     const handleToggleDoneNote = () => {
         updateOneNote(id, {
@@ -23,7 +25,7 @@ const NoteItem = ({ id, content, done, priority }: Note) => {
             <input type='checkbox' checked={priority} onChange={handleTogglePriorityNote} />
             <S.NoteLink
                 to={`/${id}`}
-                state={{ prevLocation: window.location.pathname }}
+                state={{ prevLocation: `${pathname}${search}` }}
             >{ content }</S.NoteLink>
         </S.NoteItem>
     )
