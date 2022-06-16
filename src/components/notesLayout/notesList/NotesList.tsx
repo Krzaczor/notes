@@ -1,26 +1,11 @@
-import { useNotesState } from 'context/notesContext';
-import { useLocation } from 'react-router-dom';
-import { NoteList } from 'types';
 import NoteItem from './noteItem/NoteItem';
 import * as S from './NotesList.styles';
+import { Props } from './NotesList.types';
 
-const NotesList = () => {
-    const { notes } = useNotesState();
-    const { pathname } = useLocation();
-
-    let notesList: NoteList = [...notes];
-
-    if (pathname === '/undone') {
-        notesList = notes.filter(note => !note.done);
-    }
-
-    if (pathname === '/priority') {
-        notesList = notes.filter(note => note.priority);
-    }
-
+const NotesList = ({ notes }: Props) => {
     return (
         <S.NotesList>
-            {notesList.map((note) => (
+            {notes.map((note) => (
                 <NoteItem key={note.id} {...note} />
             ))}
         </S.NotesList>
