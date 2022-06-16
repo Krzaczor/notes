@@ -1,6 +1,8 @@
 import { Category } from 'types';
 
 export interface Props {
-    category: Category,
-    currentCategory: Category | undefined,
+    id?: Category['id'];
+    name: string;
+    isActive: boolean;
+    to: string;
 }

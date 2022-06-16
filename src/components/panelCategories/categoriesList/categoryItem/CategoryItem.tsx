@@ -4,25 +4,18 @@ import Button from 'components/shared/button/Button';
 import * as S from './CategoryItem.styles';
 import { Props } from './CategoryItem.types';
 
-const CategoryItem = ({ category, currentCategory }: Props) => {
+const CategoryItem = ({ id, name, isActive, to }: Props) => {
     const { removeOneCategory } = useCategoriesActions();
-    
-    const handlerRemoveCategory = () => {
-        removeOneCategory(category.id);
-    }
-
-    const isActive = currentCategory?.id === category.id;
 
     return (
         <S.CategoryItem>
             <Link
-                key={category.id}
-                to={`/all?c=${category.id}`}
+                to={to}
                 className={isActive ? 'active' : ''}
             >
-                { category.name }
+                { name }
             </Link>
-            <Button onClick={handlerRemoveCategory}>u</Button>
+            { id && <Button onClick={() => removeOneCategory(id)}>u</Button> }
         </S.CategoryItem>
     )
 }

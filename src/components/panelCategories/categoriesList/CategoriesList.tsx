@@ -5,15 +5,16 @@ import * as S from './CategoriesList.styles';
 
 const CategoriesList = () => {
     const { categories } = useCategoriesState();
-    const { currentCategory } = useCategory();
+    const { categoryId } = useCategory();
 
     return (
         <S.CategoriesList>
-            {categories.map(category => (
+            {categories.map(({ id, name }) => (
                 <CategoryItem
-                    key={category.id}
-                    category={category}
-                    currentCategory={currentCategory}
+                    key={id}
+                    name={name}
+                    to={`/all?c=${id}`}
+                    isActive={categoryId === id}
                 />
             ))}
         </S.CategoriesList>
