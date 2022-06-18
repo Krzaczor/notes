@@ -5,6 +5,7 @@ import Main from 'components/shared/main/Main';
 import NavNotes from 'components/notesLayout/navNotes/NavNotes';
 import NoteForm from 'components/notesLayout/noteForm/NoteForm';
 import NotesList from 'components/notesLayout/notesList/NotesList';
+import EmptyList from 'components/emptyList/EmptyList';
 import { NoteList } from 'types';
 
 const NoteListPage = () => {
@@ -33,20 +34,10 @@ const NoteListPage = () => {
     return (
         <Main>
             <NavNotes />
-            {notesList.length > 0
+            { notesList.length > 0
                 ? <NotesList notes={notesList} /> 
-                : (
-                <p style={{
-                    backgroundColor: 'var(--color-background)',
-                    color: 'var(--color-text)',
-                    display: 'flex',
-                    flex: 1,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                }}>
-                    brak notatek do wyświetlenia
-                </p>
-            )}
+                : <EmptyList />
+            }
             { categoryId ? <NoteForm category={categoryId} /> : null }
         </Main>
     )

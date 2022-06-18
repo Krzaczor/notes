@@ -1,0 +1,15 @@
+import styled from 'styled-components';
+
+export const EmptyList = styled.div`
+    background-color: var(--color-background);
+    color: var(--color-text);
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+
+    & > *:not(:last-child) {
+        margin-bottom: 10px;
+    }
+`
