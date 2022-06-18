@@ -33,7 +33,7 @@ const NoteListPage = () => {
 
     return (
         <Main>
-            <NavNotes />
+            { notes.length > 0 && <NavNotes /> }
             { notesList.length > 0
                 ? <NotesList notes={notesList} /> 
                 : <EmptyList />
