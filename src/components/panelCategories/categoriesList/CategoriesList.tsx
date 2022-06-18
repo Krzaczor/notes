@@ -18,6 +18,7 @@ const CategoriesList = () => {
                 <CategoryItem
                     key={id}
                     name={name}
+                    id={id}
                     to={`/all?c=${id}`}
                     isActive={categoryId === id}
                 />
