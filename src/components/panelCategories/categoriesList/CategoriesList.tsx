@@ -9,6 +9,11 @@ const CategoriesList = () => {
 
     return (
         <S.CategoriesList>
+            <CategoryItem
+                name='Wszystkie zadania'
+                to='/all'
+                isActive={!categoryId}
+            />
             {categories.map(({ id, name }) => (
                 <CategoryItem
                     key={id}

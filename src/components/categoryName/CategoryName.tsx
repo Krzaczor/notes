@@ -54,7 +54,9 @@ const CategoryName = ({ category }: Props) => {
     }
 
     if (!category) {
-        return <S.CategoryName />;
+        return (
+            <S.CategoryName>Wszystkie zadania</S.CategoryName>
+        );
     }
 
     if (isEdit) {
