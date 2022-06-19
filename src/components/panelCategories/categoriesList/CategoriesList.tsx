@@ -10,7 +10,7 @@ const CategoriesList = () => {
     return (
         <S.CategoriesList>
             <CategoryItem
-                name='Wszystkie zadania'
+                name='Wszystkie notatki'
                 to='/all'
                 isActive={!categoryId}
             />

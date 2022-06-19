@@ -59,7 +59,7 @@ const CategoryName = ({ category }: Props) => {
 
     if (!category) {
         return (
-            <S.CategoryName>Wszystkie zadania</S.CategoryName>
+            <S.CategoryName>Wszystkie notatki</S.CategoryName>
         );
     }
 
