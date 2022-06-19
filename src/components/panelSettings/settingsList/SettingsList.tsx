@@ -15,7 +15,7 @@ const SettingsList = () => {
     return (
         <S.SettingsList>
             {settingsList.map(([ name, checked ]) => (
-                <SettingItem name={name} />
+                <SettingItem name={name} checked={checked} />
             ))}
         </S.SettingsList>
     )

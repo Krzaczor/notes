@@ -1,9 +1,11 @@
 import { useSettingsActions } from 'context/settingsContext';
 import * as S from './SettingItem.styles';
 import { UpdateSettings } from 'types';
+import Checkbox from 'components/shared/checkbox/Checkbox';
 
 interface Props {
     name: UpdateSettings;
+    checked: boolean;
 }
 
 const settingNames = {
@@ -12,10 +14,10 @@ const settingNames = {
     displayCreateAtNote: 'Wyświetl czas utworzenia',
 }
 
-const SettingItem = ({ name }: Props) => {
+const SettingItem = ({ name, checked }: Props) => {
     const { updateSetting } = useSettingsActions();
 
-    const handleToggleSetting = (name: UpdateSettings) => {
+    const handleToggleSetting = () => {
         if (name === 'lightMode') {
             document.querySelector('html')?.classList.toggle('light-mode');
         }
@@ -26,7 +28,7 @@ const SettingItem = ({ name }: Props) => {
     return (
         <S.SettingItem key={name}>
             <p>{ settingNames[name] }</p>
-            <button onClick={() => handleToggleSetting(name)}>u</button>
+            <Checkbox onChange={handleToggleSetting} checked={checked} />
         </S.SettingItem>
     )
 }
