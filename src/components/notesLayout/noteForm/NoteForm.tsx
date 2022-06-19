@@ -21,9 +21,13 @@ const NoteForm = ({ category }: Props) => {
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
+        if (contentValue.trim() === '') {
+            return;
+        }
+
         createNote({
             category,
-            content: contentValue,
+            content: contentValue.trim(),
             priority: settings.defaultPriority
         });
 
