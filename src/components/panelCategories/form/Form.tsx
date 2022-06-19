@@ -14,8 +14,15 @@ const Form = () => {
     const handleCreateCategory = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
+        if (name.trim() === '') {
+            return;
+        }
+
         if (name) {
-            createCategory({ name });
+            createCategory({
+                name: name.trim()
+            });
+            
             setName('');
         }
     }
