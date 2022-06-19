@@ -26,8 +26,12 @@ const CategoryNameEdit = ({ category, onStopEdit }: NameEditProps) => {
 
         if (!category) return;
 
+        if (tempValue.trim() === '') {
+            return;
+        }
+
         updateOneCategory(category.id, {
-            name: tempValue,
+            name: tempValue.trim(),
         });
 
         onStopEdit();
