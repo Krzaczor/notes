@@ -29,7 +29,7 @@ export interface Settings {
     displayCreateAtNote: boolean;
 }
 
-export type UpdateSettings = keyof Settings;
+export type UpdateSettings = 'lightMode' | 'defaultPriority' | 'displayCreateAtNote';
 
 export type ErrorStorage = string | null;
 export type ResetErrorAction = () => void;
