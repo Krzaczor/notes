@@ -35,6 +35,6 @@ export const Input = styled.input`
     }
 
     &:checked+${Checkbox}:before {
-        transform: translate(33px, -50%);
+        transform: translate(36px, -50%);
     }
 `;
