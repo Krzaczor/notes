@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import { BsListUl } from 'react-icons/bs';
+import { RiSettings5Fill } from 'react-icons/ri';
 import Button from 'components/shared/button/Button';
 import Navigation from 'components/navigation/Navigation';
 import CategoryName from 'components/categoryName/CategoryName';
@@ -47,9 +49,13 @@ const CommonPage = () => {
                 <PanelSettings.SettingsList />
             </PanelSettings>
             <Navigation>
-                <Button variant='second' onClick={showPanelCategories}>s</Button>
+                <Button variant='second' onClick={showPanelCategories}>
+                    <BsListUl size={24} />
+                </Button>
                 <CategoryName category={currentCategory} />
-                <Button variant='second' onClick={showPanelSettings}>s</Button>
+                <Button variant='second' onClick={showPanelSettings}>
+                    <RiSettings5Fill size={24} />
+                </Button>
             </Navigation>
         </>
     )

@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect } from 'react';
+import { RiMore2Fill } from 'react-icons/ri';
 import { getUrlCategory } from 'utils/getUrlCategory';
 import { useNotesActions, useNotesState } from 'context/notesContext';
 import { useCategory } from 'hooks/useCategory';
@@ -55,9 +56,8 @@ const NavNotes = () => {
                 onClose={handleCloseMoreOptions}
                 element={<Button
                     ref={btnRef}
-                    variant='second'
                     onClick={handleToggleMoreOptions}
-                >b</Button>}
+                ><RiMore2Fill size={24} /></Button>}
             >
                 <Button onClick={handleRemoveAllNotes}>usuń</Button>
                 <Button onClick={handlePriorityAllNotes}>ważne</Button>

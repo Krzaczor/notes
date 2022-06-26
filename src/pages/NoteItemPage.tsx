@@ -1,9 +1,13 @@
-import { Link, useLocation, useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
+import { AiOutlineArrowLeft } from 'react-icons/ai';
+import { BsCheckCircle, BsCheckCircleFill, BsExclamationCircle, BsExclamationCircleFill } from 'react-icons/bs';
+import { FaTrash } from 'react-icons/fa';
 import { useNotesActions, useNotesState } from 'context/notesContext';
 import Actions from 'components/shared/actions/Actions';
 import Button from 'components/shared/button/Button';
 import Main from 'components/shared/main/Main';
 import Time from 'components/shared/time/Time';
+import Link from 'components/shared/link/Link';
 import { Note } from 'types';
 
 interface Props {
@@ -38,17 +42,25 @@ const NoteActions = ({ note }: Props) => {
 
     return (
         <Actions>
-            <Link to={prevLocation}>b</Link>
+            <Link to={prevLocation}>
+                <AiOutlineArrowLeft size={20} color='var(--color-text)' />
+            </Link>
             <Button variant='second' onClick={handleToggleDoneNote}>
-                {note.done ? 'd' : 'nd'}
+                {note.done ? (
+                    <BsCheckCircleFill color='var(--color-success)' size={22} />
+                ) : (
+                    <BsCheckCircle color='var(--color-text)' size={22} />
+                )}
             </Button>
             <Button variant='second' onClick={handleTogglePriorityNote}>
-                {/* p = priority, np = not priority */}
-                {note.priority ? 'p' : 'np'}
+                {note.priority ? (
+                    <BsExclamationCircleFill color='var(--color-info)' size={22} />
+                ) : (
+                    <BsExclamationCircle color='var(--color-text)' size={22} />
+                )}
             </Button>
-            <Link to={prevLocation} onClick={handleRemoveNote}>
-                {/* r = remove */}
-                r
+            <Link  variant='second' to={prevLocation} onClick={handleRemoveNote}>
+                <FaTrash size={18} color='var(--color-danger)' />
             </Link>
         </Actions>
     )

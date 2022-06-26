@@ -1,4 +1,5 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
+import { BsPlusLg } from 'react-icons/bs';
 import { useNotesActions } from 'context/notesContext';
 import { useSettingsState } from 'context/settingsContext';
 import Button from 'components/shared/button/Button';
@@ -42,7 +43,9 @@ const NoteForm = ({ category }: Props) => {
                 value={contentValue}
                 onChange={handleChangeContentValue}
             />
-            <Button variant='primary'>a</Button>
+            <Button variant='primary'>
+                <BsPlusLg size={22} color='var(--color-light)' />
+            </Button>
         </S.NoteForm>
     )
 }

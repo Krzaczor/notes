@@ -1,3 +1,4 @@
+import { FaTrash } from 'react-icons/fa';
 import Link from 'components/shared/link/Link';
 import { useCategoriesActions } from 'context/categoriesContext';
 import Button from 'components/shared/button/Button';
@@ -15,7 +16,9 @@ const CategoryItem = ({ id, name, isActive, to }: Props) => {
             >
                 { name }
             </Link>
-            { id && <Button onClick={() => removeOneCategory(id)}>u</Button> }
+            { id && <Button onClick={() => removeOneCategory(id)}>
+                <FaTrash size={20} color='var(--color-danger)' />
+            </Button> }
         </S.CategoryItem>
     )
 }

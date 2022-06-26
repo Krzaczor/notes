@@ -1,4 +1,11 @@
 import { useLocation } from 'react-router-dom';
+import {
+    BsExclamationCircle,
+    BsExclamationCircleFill,
+    BsCheckCircle,
+    BsCheckCircleFill
+} from 'react-icons/bs';
+import Button from 'components/shared/button/Button';
 import { useNotesActions } from 'context/notesContext';
 import * as S from './NoteItem.styles';
 import { Note } from 'types';
@@ -21,8 +28,20 @@ const NoteItem = ({ id, content, done, priority }: Note) => {
 
     return (
         <S.NoteItem>
-            <input type='checkbox' checked={!!done} onChange={handleToggleDoneNote} />
-            <input type='checkbox' checked={priority} onChange={handleTogglePriorityNote} />
+            <Button onClick={handleToggleDoneNote}>
+                {!!done ? (
+                    <BsCheckCircleFill color='var(--color-success)' size={26} />
+                ) : (
+                    <BsCheckCircle color='var(--color-text)' size={26} />
+                )}
+            </Button>
+            <Button onClick={handleTogglePriorityNote}>
+                {priority ? (
+                    <BsExclamationCircleFill color='var(--color-info)' size={26} />
+                ) : (
+                    <BsExclamationCircle color='var(--color-text)' size={26} />
+                )}
+            </Button>
             <S.NoteLink
                 to={`/${id}`}
                 state={{ prevLocation: `${pathname}${search}` }}
