@@ -46,7 +46,7 @@ export const Link = styled(RouterLink)<Props>`
     display: inline-block;
     font-size: 1rem;
     min-width: 40px;
-    padding: 0.8rem;
+    padding: 0.5rem;
     text-decoration: none;
     text-align: center;
     vertical-align: middle;
