@@ -51,6 +51,7 @@ export const Button = styled.button<Props>`
 
     & svg {
         vertical-align: middle;
+        color: var(--color-text);
     }
 
     ${({ variant }) => variant && variant in variants ? variants[variant] : null};
