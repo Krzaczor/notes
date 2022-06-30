@@ -1,11 +1,13 @@
 import { useCategoriesState } from 'context/categoriesContext';
-import { useCategory } from 'hooks/useCategory';
 import CategoryItem from './categoryItem/CategoryItem';
 import * as S from './CategoriesList.styles';
 
-const CategoriesList = () => {
+interface Props {
+    categoryId: string | undefined;
+}
+
+const CategoriesList = ({ categoryId }: Props) => {
     const { categories } = useCategoriesState();
-    const { categoryId } = useCategory();
 
     return (
         <S.CategoriesList>

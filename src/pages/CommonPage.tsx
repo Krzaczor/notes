@@ -1,25 +1,21 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { BsListUl } from 'react-icons/bs';
 import { RiSettings5Fill } from 'react-icons/ri';
+import { useCategory } from 'hooks/useCategory';
 import Button from 'components/shared/button/Button';
 import Navigation from 'components/navigation/Navigation';
 import CategoryName from 'components/categoryName/CategoryName';
-import PanelCategories from 'components/panelCategories/PanelCategories';
-import { useCategory } from 'hooks/useCategory';
 import PanelSettings from 'components/panelSettings/PanelSettings';
+import { useMediaQuery } from 'hooks/useMediaQuery';
 
-const CommonPage = () => {
-    const [canShowPanelCategories, setCanShowPanelCategories] = useState(false);
+interface Props {
+    showPanelCategories: () => void;
+}
+
+const CommonPage = ({ showPanelCategories }: Props) => {
     const [canShowPanelSettings, setCanShowPanelSettings] = useState(false);
-    const { categoryId, currentCategory } = useCategory();
-
-    const showPanelCategories = () => {
-        setCanShowPanelCategories(true);
-    }
-
-    const hidePanelCategories = () => {
-        setCanShowPanelCategories(false);
-    }
+    const { currentCategory } = useCategory();
+    const isLargeViewport = useMediaQuery('(max-width: 700px)');
 
     const showPanelSettings = () => {
         setCanShowPanelSettings(true);
@@ -29,18 +25,8 @@ const CommonPage = () => {
         setCanShowPanelSettings(false);
     }
 
-    useEffect(hidePanelCategories, [categoryId]);
-
     return (
         <>
-            <PanelCategories
-                show={canShowPanelCategories}
-                onClose={hidePanelCategories}
-            >
-                <PanelCategories.Title />
-                <PanelCategories.Form />
-                <PanelCategories.CategoriesList />
-            </PanelCategories>
             <PanelSettings
                 show={canShowPanelSettings}
                 onClose={hidePanelSettings}
@@ -49,9 +35,11 @@ const CommonPage = () => {
                 <PanelSettings.SettingsList />
             </PanelSettings>
             <Navigation>
-                <Button variant='second' onClick={showPanelCategories}>
-                    <BsListUl size={24} />
-                </Button>
+                {isLargeViewport && (
+                    <Button variant='second' onClick={showPanelCategories}>
+                        <BsListUl size={24} />
+                    </Button>
+                )}
                 <CategoryName category={currentCategory} />
                 <Button variant='second' onClick={showPanelSettings}>
                     <RiSettings5Fill size={24} />
