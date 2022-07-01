@@ -16,9 +16,8 @@ export const Options = styled.div`
     left: 0;
     top: 0;
     z-index: 2;
-    
+
     & > * {
-        border: none;
         cursor: pointer;
         text-align: left;
         white-space: nowrap;
