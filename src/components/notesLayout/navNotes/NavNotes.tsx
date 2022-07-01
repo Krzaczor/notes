@@ -59,11 +59,11 @@ const NavNotes = () => {
                     onClick={handleToggleMoreOptions}
                 ><RiMore2Fill size={24} /></Button>}
             >
-                <Button onClick={handleRemoveAllNotes}>usuń</Button>
                 <Button onClick={handlePriorityAllNotes}>ważne</Button>
                 <Button onClick={handleUnpriorityAllNotes}>nieważne</Button>
                 <Button onClick={handleDoneAllNotes}>zrobione</Button>
                 <Button onClick={handleUndoneAllNotes}>niezrobione</Button>
+                <Button onClick={handleRemoveAllNotes}>usuń</Button>
             </MoreOptions>
             <S.Link to={getUrlCategory('/all', categoryId)} replace>ogółem</S.Link>
             <S.Link to={getUrlCategory('/undone', categoryId)} replace>nie zrobione</S.Link>
