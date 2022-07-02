@@ -12,11 +12,17 @@ export const useMediaQuery = (query: string) => {
     }, [query]);
 
     useEffect(() => {
+        if (!mediaQueryList) return;
+
         const handleChange = (event: MediaQueryListEvent) => {
             setIsMatch(event.matches);
         }
 
-        mediaQueryList?.addEventListener('change', handleChange);
+        if (mediaQueryList?.addEventListener) {
+            mediaQueryList.addEventListener('change', handleChange);
+        } else {
+            mediaQueryList?.addListener(handleChange);
+        }
     }, [mediaQueryList]);
 
     return isMatch;
