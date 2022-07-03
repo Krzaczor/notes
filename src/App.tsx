@@ -26,7 +26,7 @@ function App() {
                     show={canShowPanelCategories}
                     onClose={hidePanelCategories}
                 />
-                <div style={{ flex: 1 }}>
+                <div style={{ flex: 1, overflow: 'hidden' }}>
                     <CommonPage
                         showPanelCategories={showPanelCategories}
                     />
