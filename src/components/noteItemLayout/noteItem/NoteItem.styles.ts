@@ -1,5 +1,5 @@
 import styled from 'styled-components';
 
-export const NoteCreateAt = styled.p`
+export const NoteInfo = styled.p`
     margin-bottom: 10px;
 `;
