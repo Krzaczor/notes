@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { Props } from './NoteContent.types';
 import NoteContentEdit from './noteContentEdit/NoteContentEdit';
+import * as S from './NoteContent.styles';
+import { Props } from './NoteContent.types';
 
 const NoteContent = ({ note }: Props) => {
     const [editMode, setEditMode] = useState(false);
@@ -23,12 +24,12 @@ const NoteContent = ({ note }: Props) => {
     }
 
     return (
-        <p style={{ margin: '10px' }}
+        <S.NoteContent
             tabIndex={0}
             onClick={handleStartEdit}
         >
             { note.content }
-        </p>
+        </S.NoteContent>
     );
 }
 
