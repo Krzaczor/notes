@@ -13,15 +13,15 @@ const useOnClickOutside = <T>(
             handler();
         };
     
-        document.addEventListener('mouseup', listener);
-        document.addEventListener('touchend', listener);
+        document.addEventListener('mousedown', listener, false);
+        document.addEventListener('touchstart', listener, false);
     
         return () => {
-            document.removeEventListener('mouseup', listener);
-            document.removeEventListener('touchend', listener);
+            document.removeEventListener('mousedown', listener);
+            document.removeEventListener('touchstart', listener);
         };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+
+    }, [handler, ref]);
 }
 
 export default useOnClickOutside;
