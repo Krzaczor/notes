@@ -11,7 +11,7 @@ const variants = {
         color: var(--color-light);
     `,
     'outline-danger': css`
-        border-color: var(--color-danger);
+        border-color: var(--color-gray);
         color: var(--color-text);
     `,
     'dark': css`
