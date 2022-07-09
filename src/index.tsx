@@ -5,19 +5,22 @@ import { CategoriesProvider } from 'context/categoriesContext';
 import { NotesProvider } from 'context/notesContext';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { ListProvider } from 'context/modalContext';
 
 const root = createRoot(
     document.getElementById('root') as HTMLElement
 );
 root.render(
     <StrictMode>
-        <SettingsProvider>
-            <CategoriesProvider>
-                <NotesProvider>
-                    <App />
-                </NotesProvider>
-            </CategoriesProvider>
-        </SettingsProvider>
+        <ListProvider>
+            <SettingsProvider>
+                <CategoriesProvider>
+                    <NotesProvider>
+                        <App />
+                    </NotesProvider>
+                </CategoriesProvider>
+            </SettingsProvider>
+        </ListProvider>
     </StrictMode>
 );
 

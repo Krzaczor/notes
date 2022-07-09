@@ -4,9 +4,10 @@ import * as S from './CategoriesList.styles';
 
 interface Props {
     categoryId: string | undefined;
+    onCloseCategory: () => void;
 }
 
-const CategoriesList = ({ categoryId }: Props) => {
+const CategoriesList = ({ categoryId, onCloseCategory }: Props) => {
     const { categories } = useCategoriesState();
 
     return (
@@ -15,6 +16,7 @@ const CategoriesList = ({ categoryId }: Props) => {
                 name='Wszystkie notatki'
                 to='/all'
                 isActive={!categoryId}
+                onCloseCategory={onCloseCategory}
             />
             {categories.map(({ id, name }) => (
                 <CategoryItem
@@ -23,6 +25,7 @@ const CategoriesList = ({ categoryId }: Props) => {
                     id={id}
                     to={`/all?c=${id}`}
                     isActive={categoryId === id}
+                    onCloseCategory={onCloseCategory}
                 />
             ))}
         </S.CategoriesList>

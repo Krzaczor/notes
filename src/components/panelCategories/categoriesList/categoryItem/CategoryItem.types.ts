@@ -5,4 +5,5 @@ export interface Props {
     name: string;
     isActive: boolean;
     to: string;
+    onCloseCategory: () => void;
 }
