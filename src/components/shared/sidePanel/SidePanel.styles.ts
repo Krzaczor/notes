@@ -7,6 +7,7 @@ export const SidePanel = styled(animated.div)`
     display: flex;
     flex-direction: column;
     height: 100%;
+    overflow-y: auto;
     position: absolute;
     width: 330px;
     z-index: 10;

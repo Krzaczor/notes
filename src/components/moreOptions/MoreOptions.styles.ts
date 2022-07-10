@@ -6,7 +6,9 @@ export const MoreOptions = styled.div`
 `;
 
 export const Options = styled.div`
+    align-content: center;
     background-color: var(--color-background-darkest);
+    border-radius: var(--radius);
     color: var(--color-text);
     display: flex;
     flex-direction: column;
@@ -21,5 +23,9 @@ export const Options = styled.div`
         cursor: pointer;
         text-align: left;
         white-space: nowrap;
+    }
+
+    & > *:not(:last-child) {
+        margin-bottom: 5px;
     }
 `

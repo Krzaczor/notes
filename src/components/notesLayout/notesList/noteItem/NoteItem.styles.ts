@@ -7,7 +7,7 @@ export const NoteItem = styled.li`
     height: 60px;
 
     & > *:not(:last-child) {
-        margin-right: 20px;
+        margin-right: 10px;
     }
 `;
 
@@ -18,5 +18,5 @@ export const NoteLink = styled(Link)`
     text-decoration: none;
     text-overflow: ellipsis;
     white-space: nowrap;
-    width: 100%;
+    flex-grow: 1;
 `;
