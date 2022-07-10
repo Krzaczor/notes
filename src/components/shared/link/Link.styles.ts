@@ -45,10 +45,8 @@ export const Link = styled(RouterLink)<Props>`
     cursor: pointer;
     display: inline-block;
     font-size: 1rem;
-    min-width: 40px;
     padding: 0.5rem;
     text-decoration: none;
-    text-align: center;
     vertical-align: middle;
 
     & svg {
@@ -57,7 +55,6 @@ export const Link = styled(RouterLink)<Props>`
 
     &.active {
         background-color: var(--color-background-darkest);
-        color: var(--color-text);
     }
 
     ${({ variant }) => variant && variant in variants ? variants[variant] : null};

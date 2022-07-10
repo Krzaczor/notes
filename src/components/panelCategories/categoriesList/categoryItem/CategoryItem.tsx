@@ -37,11 +37,12 @@ const CategoryItem = ({ id, name, isActive, to, onCloseCategory }: Props) => {
     }
 
     return (
-        <S.CategoryItem>
+        <S.CategoryItem
+            className={isActive ? 'active' : ''}
+        >
             <Link
                 to={to}
                 onClick={handleCloseCategory}
-                className={isActive ? 'active' : ''}
             >
                 { name }
             </Link>
