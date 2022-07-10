@@ -1,4 +1,5 @@
-import { useLocation } from 'react-router-dom';
+import { useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 import {
     BsCheckCircle,
@@ -12,15 +13,27 @@ import Actions from 'components/shared/actions/Actions';
 import Button from 'components/shared/button/Button';
 import Link from 'components/shared/link/Link';
 import { Props, StateLocation } from './NoteActions.types';
+import Modal from 'components/shared/modal/Modal';
 
 const NoteActions = ({ note }: Props) => {
+    const [showModalRemove, setShowModalRemove] = useState(false);
     const { removeOneNote, updateOneNote } = useNotesActions();
     const location = useLocation();
+    const navigate = useNavigate();
 
     const prevLocation = (location.state as StateLocation)?.prevLocation || '/all';
 
+    const handleShowModal = () => {
+        setShowModalRemove(true);
+    }
+
+    const handleHideModal = () => {
+        setShowModalRemove(false);
+    }
+
     const handleRemoveNote = () => {
         removeOneNote(note.id);
+        navigate(prevLocation);
     }
 
     const handleToggleDoneNote = () => {
@@ -54,9 +67,18 @@ const NoteActions = ({ note }: Props) => {
                     <BsExclamationCircle color='var(--color-text)' size={22} />
                 )}
             </Button>
-            <Link  variant='second' to={prevLocation} onClick={handleRemoveNote}>
+            <Button variant='second' onClick={handleShowModal}>
                 <FaTrash size={18} color='var(--color-danger)' />
-            </Link>
+            </Button>
+            <Modal
+                show={showModalRemove}
+                title='Usuwanie notatki'
+                message='Napewno chcesz usunąć notatkę?'
+                contentCancel='rezygnuję'
+                contentConfirm='usuwam'
+                onCancel={handleHideModal}
+                onConfirm={handleRemoveNote}
+            />
         </Actions>
     )
 }
