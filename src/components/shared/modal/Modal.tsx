@@ -1,7 +1,7 @@
-import useOnClickEsc from 'hooks/useOnClickEsc';
 import { createPortal } from 'react-dom';
 import { Transition } from 'react-spring';
-import { Button } from '../button/Button.styles';
+import useOnClickEsc from 'hooks/useOnClickEsc';
+import Button from 'components/shared/button/Button';
 import * as S from './Modal.styles';
 
 interface Props {
@@ -36,8 +36,8 @@ const ModalPortal = ({
                             { title && <S.Header>{ title }</S.Header> }
                             <S.Body>{ message }</S.Body>
                             <S.Actions>
-                                <Button fluid variant='primary' onClick={onCancel}>{contentCancel}</Button>
-                                <Button fluid variant='outline-danger' onClick={onConfirm}>{contentConfirm}</Button>
+                                <Button fluid size='lg' variant='primary' onClick={onCancel}>{contentCancel}</Button>
+                                <Button fluid size='lg' variant='outline-danger' onClick={onConfirm}>{contentConfirm}</Button>
                             </S.Actions>
                         </S.Modal>
                         <S.Overlay style={styles} onClick={onCancel} />
