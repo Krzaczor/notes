@@ -1,23 +1,23 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useCategoriesState } from 'context/categoriesContext';
-import { Category } from 'types';
+import { Category, CategoryList } from 'types';
+
+const getCurrentCategory = (categories: CategoryList, params: URLSearchParams) => {
+    const categoryId = params.get('c');
+    return categories.find(category => category.id === categoryId);
+}
 
 export const useCategory = () => {
     const { categories } = useCategoriesState();
     const [searchParams] = useSearchParams();
 
-    const [category, setCategory] = useState<Category | undefined>(undefined);
+    const [category, setCategory] = useState<Category | undefined>(() => {
+        return getCurrentCategory(categories, searchParams);
+    });
 
     useEffect(() => {
-        const searchCategory = () => {
-            const categoryId = searchParams.get('c');
-            const currentCategory = categories.find(category => category.id === categoryId);
-            
-            setCategory(currentCategory);
-        }
-
-        searchCategory();
+        setCategory(getCurrentCategory(categories, searchParams));
     }, [searchParams, categories]);
 
     return {
