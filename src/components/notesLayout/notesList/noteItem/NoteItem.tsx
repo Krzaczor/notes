@@ -5,12 +5,17 @@ import {
     BsCheckCircle,
     BsCheckCircleFill
 } from 'react-icons/bs';
-import Button from 'components/shared/button/Button';
+import { getUrlCategory } from 'utils/getUrlCategory';
 import { useNotesActions } from 'context/notesContext';
+import Button from 'components/shared/button/Button';
 import * as S from './NoteItem.styles';
 import { Note } from 'types';
 
-const NoteItem = ({ id, content, done, priority }: Note) => {
+interface Props extends Note {
+    categoryId: string | undefined;
+}
+
+const NoteItem = ({ id, content, done, priority, categoryId }: Props) => {
     const { updateOneNote } = useNotesActions();
     const { pathname, search } = useLocation();
 
@@ -43,7 +48,7 @@ const NoteItem = ({ id, content, done, priority }: Note) => {
                 )}
             </Button>
             <S.NoteLink
-                to={`/${id}`}
+                to={getUrlCategory(`/${id}`, categoryId)}
                 state={{ prevLocation: `${pathname}${search}` }}
             >{ content }</S.NoteLink>
         </S.NoteItem>
