@@ -6,9 +6,11 @@ import NoteItemPage from 'pages/NoteItemPage';
 import NotFoundPage from 'pages/NotFoundPage';
 import PanelCategories from 'components/panelCategories/PanelCategories';
 import GlobalStyles from './globalStyles';
+import { useLightMode } from 'hooks/useLightMode';
 
 function App() {
     const [canShowPanelCategories, setCanShowPanelCategories] = useState(false);
+    useLightMode();
 
     const showPanelCategories = () => {
         setCanShowPanelCategories(true);

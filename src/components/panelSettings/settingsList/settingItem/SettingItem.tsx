@@ -18,10 +18,6 @@ const SettingItem = ({ name, checked }: Props) => {
     const { updateSetting } = useSettingsActions();
 
     const handleToggleSetting = () => {
-        if (name === 'lightMode') {
-            document.querySelector('html')?.classList.toggle('light-mode');
-        }
-
         updateSetting(name);
     }
 
