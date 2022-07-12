@@ -7,12 +7,15 @@ import Modal from 'components/shared/modal/Modal';
 import Button from 'components/shared/button/Button';
 import * as S from './CategoryItem.styles';
 import { Props } from './CategoryItem.types';
+import { useNotesActions, useNotesState } from 'context/notesContext';
 
 const CategoryItem = ({ id, name, isActive, to, onCloseCategory }: Props) => {
     const [toRemove, setToRemove] = useState(false);
     const { removeOneCategory } = useCategoriesActions();
     const { showModal } = useListContextState();
     const { handleOpenModal, handleCloseModal } = useListContextActions();
+    const { notes } = useNotesState();
+    const { removeManyNotes } = useNotesActions();
 
     const handleToRemove = () => {
         setToRemove(true);
@@ -27,7 +30,12 @@ const CategoryItem = ({ id, name, isActive, to, onCloseCategory }: Props) => {
     const handleConfirm = () => {
         if (!id) return;
 
+        const notesIdToNotes = notes
+            .filter(note => note.category === id)
+            .map(note => note.id);
+
         removeOneCategory(id);
+        removeManyNotes(notesIdToNotes);
         setToRemove(false);
         handleCloseModal();
     }
