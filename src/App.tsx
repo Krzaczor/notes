@@ -34,7 +34,7 @@ function App() {
     }
 
     return (
-        <HashRouter basename={process.env.PUBLIC_URL}>
+        <HashRouter>
             {errorSettings !== null && <Settings />}
             <div style={{ display: 'flex', height: '100%' }}>
                 {settings && (
