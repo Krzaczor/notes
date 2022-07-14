@@ -19,18 +19,21 @@ const initCategories: CategoryList = [];
 
 export const CategoriesProvider = ({ children }: CategoriesProps) => {
     const [error, setError] = useState<ErrorStorage>(null);
-    const [categories, setCategories] = useState<CategoryList>(() => {
-        try {
-            const categoriesStorage = getCategoriesStorage();
-            return categoriesStorage ? categoriesStorage : initCategories;
-        } catch (error) {
-            setError((error as Error).message);
-            return initCategories;
-        }
-    });
+    const [categories, setCategories] = useState<CategoryList>(null!);
 
     useEffect(() => {
-        setCategoriesStorage(categories);
+        try {
+            const categoriesStorage = getCategoriesStorage();
+            setCategories(categoriesStorage ? categoriesStorage : initCategories);
+        } catch (error) {
+            setError((error as Error).message);
+        }
+    }, []);
+
+    useEffect(() => {
+        if (categories !== null) {
+            setCategoriesStorage(categories);
+        }
     }, [categories]);
 
     const createCategory: CreateCategoryAction = (category) => {
