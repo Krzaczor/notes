@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { HashRouter, Navigate, Route, Routes } from 'react-router-dom';
 import CommonPage from 'pages/CommonPage';
 import NoteListPage from 'pages/NoteListPage';
 import NoteItemPage from 'pages/NoteItemPage';
@@ -34,7 +34,7 @@ function App() {
     }
 
     return (
-        <BrowserRouter basename={process.env.PUBLIC_URL}>
+        <HashRouter basename={process.env.PUBLIC_URL}>
             {errorSettings !== null && <Settings />}
             <div style={{ display: 'flex', height: '100%' }}>
                 {settings && (
@@ -48,16 +48,16 @@ function App() {
                         showPanelCategories={showPanelCategories}
                     />
                     <Routes>
-                        <Route path='/' element={<Navigate replace to='/all' />} />
-                        <Route path='/all' element={<NoteListPage />} />
-                        <Route path='/undone' element={<NoteListPage />} />
-                        <Route path='/priority' element={<NoteListPage />} />
-                        <Route path='/:noteId' element={<NoteItemPage />} />
+                        <Route path='/' element={<Navigate replace to='all' />} />
+                        <Route path='all' element={<NoteListPage />} />
+                        <Route path='undone' element={<NoteListPage />} />
+                        <Route path='priority' element={<NoteListPage />} />
+                        <Route path=':noteId' element={<NoteItemPage />} />
                         <Route path='*' element={<NotFoundPage />} />
                     </Routes>
                 </div>
             </div>
-        </BrowserRouter>
+        </HashRouter>
     );
 }
 
