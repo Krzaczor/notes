@@ -18,9 +18,7 @@ const NoteItemPage = () => {
     return (
         <Main>
             {note && <NoteActions note={note} />}
-            <div style={{ flex: 1, backgroundColor: 'var(--color-background)', color: 'white', padding: 'var(--padding-container)' }}>
-                {note ? <NoteItem note={note} /> : <NoteNotFound />}
-            </div>
+            {note ? <NoteItem note={note} /> : <NoteNotFound />}
         </Main>
     )
 }

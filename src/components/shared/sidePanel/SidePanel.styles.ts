@@ -8,7 +8,7 @@ export const SidePanel = styled(animated.div)`
     flex-direction: column;
     height: 100%;
     overflow-y: auto;
-    position: absolute;
+    position: fixed;
     width: 330px;
     z-index: 10;
 `;
@@ -17,7 +17,7 @@ export const Overlay = styled(animated.div)`
     background-color: rgba(0, 0, 0, 0.5);
     height: 100%;
     left: 0;
-    position: absolute;
+    position: fixed;
     top: 0;
     width: 100%;
     z-index: 5;

@@ -7,4 +7,5 @@ export const NotesList = styled.ul`
     list-style: none;
     overflow: auto;
     padding: var(--padding-container);
+    padding-top: 65px;
 `;

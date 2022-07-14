@@ -2,11 +2,12 @@ import { useState } from 'react';
 import { BsListUl } from 'react-icons/bs';
 import { RiSettings5Fill } from 'react-icons/ri';
 import { useCategory } from 'hooks/useCategory';
+import { useMediaQuery } from 'hooks/useMediaQuery';
 import Button from 'components/shared/button/Button';
 import Navigation from 'components/navigation/Navigation';
 import CategoryName from 'components/categoryName/CategoryName';
 import PanelSettings from 'components/panelSettings/PanelSettings';
-import { useMediaQuery } from 'hooks/useMediaQuery';
+import { mediaPoint } from 'consts';
 
 interface Props {
     showPanelCategories: () => void;
@@ -15,7 +16,7 @@ interface Props {
 const CommonPage = ({ showPanelCategories }: Props) => {
     const [canShowPanelSettings, setCanShowPanelSettings] = useState(false);
     const { currentCategory } = useCategory();
-    const isLargeViewport = useMediaQuery('(max-width: 700px)');
+    const isLargeViewport = useMediaQuery(`(max-width: ${mediaPoint}px)`);
 
     const showPanelSettings = () => {
         setCanShowPanelSettings(true);

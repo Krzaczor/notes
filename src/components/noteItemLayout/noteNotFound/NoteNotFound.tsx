@@ -1,11 +1,12 @@
 import Link from 'components/shared/link/Link';
+import * as S from './NoteNotFound.styles';
 
 const NoteNotFound = () => {
     return (
-        <div style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', gap: '15px'}}>
+        <S.NoteNotFound>
             <p>Niestety nie znaleźliśmy Twojej notatki :(</p>
-            <Link to="/all">wróć</Link>
-        </div>
+            <Link to="/all" variant='dark' size='lg'>wróć</Link>
+        </S.NoteNotFound>
     )
 }
 
