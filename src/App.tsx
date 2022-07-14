@@ -34,7 +34,7 @@ function App() {
     }
 
     return (
-        <BrowserRouter>
+        <BrowserRouter basename={process.env.PUBLIC_URL}>
             {errorSettings !== null && <Settings />}
             <div style={{ display: 'flex', height: '100%' }}>
                 {settings && (
