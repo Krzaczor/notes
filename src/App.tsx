@@ -48,11 +48,11 @@ function App() {
                         showPanelCategories={showPanelCategories}
                     />
                     <Routes>
-                        <Route path='/' element={<Navigate replace to='all' />} />
-                        <Route path='all' element={<NoteListPage />} />
-                        <Route path='undone' element={<NoteListPage />} />
-                        <Route path='priority' element={<NoteListPage />} />
-                        <Route path=':noteId' element={<NoteItemPage />} />
+                        <Route path='/' element={<Navigate replace to='/all' />} />
+                        <Route path='/all' element={<NoteListPage />} />
+                        <Route path='/undone' element={<NoteListPage />} />
+                        <Route path='/priority' element={<NoteListPage />} />
+                        <Route path='/:noteId' element={<NoteItemPage />} />
                         <Route path='*' element={<NotFoundPage />} />
                     </Routes>
                 </div>
