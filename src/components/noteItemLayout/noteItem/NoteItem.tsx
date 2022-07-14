@@ -9,7 +9,7 @@ const NoteItem = ({ note }: Props) => {
 
     return (
        <>
-            {settings.displayCreateAtNote && (
+            {settings?.displayCreateAtNote && (
                 <S.NoteInfo>Utworzono: <Time time={note.createAt} /></S.NoteInfo>
             )}
            <NoteContent note={note} />

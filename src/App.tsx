@@ -5,17 +5,17 @@ import NoteListPage from 'pages/NoteListPage';
 import NoteItemPage from 'pages/NoteItemPage';
 import NotFoundPage from 'pages/NotFoundPage';
 import PanelCategories from 'components/panelCategories/PanelCategories';
-import { useLightMode } from 'hooks/useLightMode';
 import { useNotesState } from 'context/notesContext';
 import { useCategoriesState } from 'context/categoriesContext';
 import CategoriesAndNotes from 'components/errorStorage/categoriesAndNotes/CategoriesAndNotes';
+import { useSettingsState } from 'context/settingsContext';
+import Settings from 'components/errorStorage/settings/Settings';
 
 function App() {
     const [canShowPanelCategories, setCanShowPanelCategories] = useState(false);
     const { notes, error: errorNotes } = useNotesState();
     const { categories, error: errorCategories } = useCategoriesState();
-
-    useLightMode();
+    const { settings, error: errorSettings } = useSettingsState();
 
     const showPanelCategories = () => {
         setCanShowPanelCategories(true);
@@ -35,11 +35,14 @@ function App() {
 
     return (
         <BrowserRouter>
+            {errorSettings !== null && <Settings />}
             <div style={{ display: 'flex', height: '100%' }}>
-                <PanelCategories
-                    show={canShowPanelCategories}
-                    onClose={hidePanelCategories}
-                />
+                {settings && (
+                    <PanelCategories
+                        show={canShowPanelCategories}
+                        onClose={hidePanelCategories}
+                    />
+                )}
                 <div style={{ flex: 1, overflow: 'hidden' }}>
                     <CommonPage
                         showPanelCategories={showPanelCategories}

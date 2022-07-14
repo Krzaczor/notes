@@ -6,6 +6,7 @@ import {
     SettingsState,
     SettingsActions,
     UpdateSettingAction,
+    ResetSettingsAction,
 } from './settingsContext.types';
 
 const SettingsContextState = createContext<SettingsState>(null!);
@@ -18,19 +19,23 @@ const initSettings: Settings = {
 }
 
 export const SettingsProvider = ({ children }: SettingsProps) => {
-    const [error, setError] = useState<ErrorStorage>(null);
-    const [settings, setSettings] = useState<Settings>(() => {
-        try {
-            const settingStorage = getSettingsStorage();
-            return settingStorage ? settingStorage : initSettings;
-        } catch (error) {
-            setError((error as Error).message);
-            return initSettings;
-        }
-    });
+    const [error, setError] = useState<ErrorStorage>(null!);
+    const [settings, setSettings] = useState<Settings>(null!);
 
     useEffect(() => {
-        setSettingsStorage(settings);
+        try {
+            const settingStorage = getSettingsStorage();
+            setSettings(settingStorage ? settingStorage : initSettings);
+            setError(null);
+        } catch (error) {
+            setError((error as Error).message);
+        }
+    }, []);
+
+    useEffect(() => {
+        if (settings !== null) {
+            setSettingsStorage(settings);
+        }
     }, [settings]);
 
     const updateSetting: UpdateSettingAction = (key) => {
@@ -43,11 +48,19 @@ export const SettingsProvider = ({ children }: SettingsProps) => {
         })
     }
 
+    const resetSettings: ResetSettingsAction = () => {
+        setSettings(initSettings);
+    }
+
     const resetError: ResetErrorAction = () => setError(null);
 
     return (
         <SettingsContextState.Provider value={{ error, settings }}>
-            <SettingsContextActions.Provider value={{ updateSetting, resetError }}>
+            <SettingsContextActions.Provider value={{
+                updateSetting,
+                resetError,
+                resetSettings
+            }}>
                 { children }
             </SettingsContextActions.Provider>
         </SettingsContextState.Provider>

@@ -8,9 +8,9 @@ interface Props {
     show: boolean;
     message: string;
     title?: string;
-    contentCancel: string;
+    contentCancel?: string;
     contentConfirm: string;
-    onCancel: () => void;
+    onCancel?: () => void;
     onConfirm: () => void;
 }
 
@@ -20,7 +20,7 @@ const ModalPortal = ({
     message,
     contentCancel,
     contentConfirm,
-    onCancel,
+    onCancel = () => {},
     onConfirm
 }: Props) => {
     useOnClickEsc(onCancel);
@@ -36,8 +36,8 @@ const ModalPortal = ({
                             { title && <S.Header>{ title }</S.Header> }
                             <S.Body>{ message }</S.Body>
                             <S.Actions>
-                                <Button fluid size='lg' variant='primary' onClick={onCancel}>{contentCancel}</Button>
-                                <Button fluid size='lg' variant='outline-danger' onClick={onConfirm}>{contentConfirm}</Button>
+                                {contentCancel && <Button fluid size='lg' variant='primary' onClick={onCancel}>{contentCancel}</Button>}
+                                <Button fluid={!!contentCancel} size='lg' variant='outline-danger' onClick={onConfirm}>{contentConfirm}</Button>
                             </S.Actions>
                         </S.Modal>
                         <S.Overlay style={styles} onClick={onCancel} />
