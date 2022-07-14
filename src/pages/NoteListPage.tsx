@@ -10,30 +10,29 @@ import { NoteList } from 'types';
 
 const NoteListPage = () => {
     const { categoryId } = useCategory();
-    const { notes, error } = useNotesState();
+    const { notes } = useNotesState();
     const { pathname } = useLocation();
     
     let notesList: NoteList = [];
-    
-    if (error) {
-        return <p>coś poszło nie tak</p>;
-    }
+    let notesOfCategory: NoteList = [];
 
     if (categoryId) {
-        notesList = notes.filter(note => note.category === categoryId);
+        notesOfCategory = notes.filter(note => note.category === categoryId);
     } else {
-        notesList = [...notes];
+        notesOfCategory = [...notes];
     }
     
     if (pathname === '/undone') {
-        notesList = notesList.filter(note => !note.done);
+        notesList = notesOfCategory.filter(note => !note.done);
     } else if (pathname === '/priority') {
-        notesList = notesList.filter(note => note.priority);
+        notesList = notesOfCategory.filter(note => note.priority);
+    } else {
+        notesList = [...notesOfCategory];
     }
 
     return (
         <Main>
-            { notes.length > 0 && <NavNotes /> }
+            { notesOfCategory.length > 0 && <NavNotes /> }
             { notesList.length > 0
                 ? <NotesList notes={notesList} /> 
                 : <EmptyList />

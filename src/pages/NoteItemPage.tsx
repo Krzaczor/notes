@@ -8,7 +8,11 @@ import NoteItem from 'components/noteItemLayout/noteItem/NoteItem';
 const NoteItemPage = () => {
     const { notes } = useNotesState();
     const { noteId } = useParams();
-
+    
+    if (notes === null) {
+        return null;
+    }
+    
     const note = notes.find(note => note.id === noteId);
 
     return (

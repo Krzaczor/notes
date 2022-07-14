@@ -5,11 +5,16 @@ import NoteListPage from 'pages/NoteListPage';
 import NoteItemPage from 'pages/NoteItemPage';
 import NotFoundPage from 'pages/NotFoundPage';
 import PanelCategories from 'components/panelCategories/PanelCategories';
-import GlobalStyles from './globalStyles';
 import { useLightMode } from 'hooks/useLightMode';
+import { useNotesState } from 'context/notesContext';
+import { useCategoriesState } from 'context/categoriesContext';
+import CategoriesAndNotes from 'components/errorStorage/categoriesAndNotes/CategoriesAndNotes';
 
 function App() {
     const [canShowPanelCategories, setCanShowPanelCategories] = useState(false);
+    const { notes, error: errorNotes } = useNotesState();
+    const { categories, error: errorCategories } = useCategoriesState();
+
     useLightMode();
 
     const showPanelCategories = () => {
@@ -20,9 +25,16 @@ function App() {
         setCanShowPanelCategories(false);
     }
 
+    if (errorNotes !== null || errorCategories !== null) {
+        return <CategoriesAndNotes />;
+    }
+
+    if (notes === null || categories === null) {
+        return null;
+    }
+
     return (
         <BrowserRouter>
-            <GlobalStyles />
             <div style={{ display: 'flex', height: '100%' }}>
                 <PanelCategories
                     show={canShowPanelCategories}

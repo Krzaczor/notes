@@ -21,18 +21,22 @@ const initNotes: NoteList = [];
 
 export const NotesProvider = ({ children }: NotesProps) => {
     const [error, setError] = useState<ErrorStorage>(null);
-    const [notes, setNotes] = useState<NoteList>(() => {
-        try {
-            const notesStorage = getNotesStorage();
-            return notesStorage ? notesStorage : initNotes;
-        } catch (error) {
-            setError((error as Error).message);
-            return initNotes;
-        }
-    });
+    const [notes, setNotes] = useState<NoteList>(null!);
 
     useEffect(() => {
-        setNotesStorage(notes);
+        try {
+            const notesStorage = getNotesStorage();
+            setNotes(notesStorage ? notesStorage : initNotes);
+            setError(null);
+        } catch (error) {
+            setError((error as Error).message);
+        }
+    }, []);
+
+    useEffect(() => {
+        if (notes !== null) {
+            setNotesStorage(notes);
+        }
     }, [notes]);
 
     const createNote: CreateNoteAction = ({ content, category, priority }) => {
