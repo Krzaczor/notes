@@ -5,7 +5,7 @@ export const useLightMode = () => {
     const firstRender = useRef(true);
     const { settings } = useSettingsState();
 
-    document.querySelector('html')?.classList.toggle('light-mode', settings.lightMode);
+    document.querySelector('html')?.classList.toggle('light-mode', settings?.lightMode ?? false);
 
     useEffect(() => {
         if (firstRender.current) {
@@ -13,6 +13,6 @@ export const useLightMode = () => {
             return;
         }
 
-        document.querySelector('html')?.classList.toggle('light-mode', settings.lightMode);
-    }, [settings.lightMode]);
+        document.querySelector('html')?.classList.toggle('light-mode', settings?.lightMode ?? false);
+    }, [settings?.lightMode]);
 }
