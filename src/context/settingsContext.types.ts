@@ -3,10 +3,9 @@ import {
     ErrorStorage,
     ResetErrorAction,
     Settings,
-    UpdateSettings
 } from 'types';
 
-export type UpdateSettingAction = (key: UpdateSettings) => void;
+export type UpdateSettingAction = (key: keyof Settings) => void;
 export type ResetSettingsAction = () => void;
 
 export interface SettingsState {

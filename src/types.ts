@@ -24,12 +24,11 @@ export type UpdaterNote = Partial<Omit<Note, 'id' | 'createAt'>>;
 export type RemoverNote = Note['id'];
 
 export interface Settings {
+    [key: string]: boolean;
     lightMode: boolean;
     defaultPriority: boolean;
     displayCreateAtNote: boolean;
 }
-
-export type UpdateSettings = 'lightMode' | 'defaultPriority' | 'displayCreateAtNote';
 
 export type ErrorStorage = string | null;
 export type ResetErrorAction = () => void;

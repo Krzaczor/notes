@@ -1,14 +1,16 @@
 import { useSettingsActions } from 'context/settingsContext';
 import * as S from './SettingItem.styles';
-import { UpdateSettings } from 'types';
+import { Settings } from 'types';
 import Checkbox from 'components/shared/checkbox/Checkbox';
 
 interface Props {
-    name: UpdateSettings;
+    name: keyof Settings;
     checked: boolean;
 }
 
-const settingNames = {
+const settingNames: {
+    [key: string]: string;
+} = {
     lightMode: 'Jasny motyw',
     defaultPriority: 'Domyślnie ważne',
     displayCreateAtNote: 'Wyświetl czas utworzenia',
@@ -22,7 +24,7 @@ const SettingItem = ({ name, checked }: Props) => {
     }
 
     return (
-        <S.SettingItem key={name}>
+        <S.SettingItem>
             <p>{ settingNames[name] }</p>
             <Checkbox onChange={handleToggleSetting} checked={checked} />
         </S.SettingItem>
