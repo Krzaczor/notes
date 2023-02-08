@@ -1,6 +1,8 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
+import { BsPlusLg } from 'react-icons/bs';
 import { useCategoriesActions } from 'context/categoriesContext';
 import Input from 'components/shared/input/Input';
+import Button from 'components/shared/button/Button';
 import * as S from './Form.styles';
 
 const Form = () => {
@@ -18,13 +20,11 @@ const Form = () => {
             return;
         }
 
-        if (name) {
-            createCategory({
-                name: name.trim()
-            });
-            
-            setName('');
-        }
+        createCategory({
+            name: name.trim()
+        });
+        
+        setName('');
     }
 
     return (
@@ -35,6 +35,9 @@ const Form = () => {
                 placeholder='Treść nowej kategorii'
                 onChange={handleChangeName}
             />
+            <Button variant='primary'>
+                <BsPlusLg size={22} color='var(--color-light)' />
+            </Button>
         </S.Form>
     )
 }
