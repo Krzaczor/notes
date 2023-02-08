@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { mediaPointCSS } from 'consts';
+import { MEDIA_POINT_CSS } from 'consts';
 import { Props } from './Actions.types';
 
 export const Actions = styled.nav<Props>`
@@ -12,7 +12,7 @@ export const Actions = styled.nav<Props>`
         margin-right: 10px;
     }
 
-    @media screen and (min-width: ${mediaPointCSS}px) {
+    @media screen and (min-width: ${MEDIA_POINT_CSS}px) {
         width: calc(100% - 330px);
     }
 `;

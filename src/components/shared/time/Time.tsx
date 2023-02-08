@@ -1,4 +1,4 @@
-import formatTime from 'utils/formatTime';
+import { formatTime } from 'utils/formatTime';
 import { Props } from './Time.types';
 
 const Time = ({ time }: Props) => {

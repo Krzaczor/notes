@@ -1,2 +1,2 @@
-export const mediaPoint = 700;
-export const mediaPointCSS = 701;
+export const MEDIA_POINT = 700;
+export const MEDIA_POINT_CSS = 701;

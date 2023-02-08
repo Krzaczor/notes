@@ -17,8 +17,14 @@ const NoteItemPage = () => {
 
     return (
         <Main>
-            {note && <NoteActions note={note} />}
-            {note ? <NoteItem note={note} /> : <NoteNotFound />}
+            {note ? (
+                <>
+                    <NoteActions note={note} />
+                    <NoteItem note={note} />
+                </>
+            ) : (
+                <NoteNotFound />
+            )}
         </Main>
     )
 }

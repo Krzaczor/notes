@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { mediaPointCSS } from 'consts';
+import { MEDIA_POINT_CSS } from 'consts';
 
 export const NoteForm = styled.form`
     align-items: stretch;
@@ -14,7 +14,7 @@ export const NoteForm = styled.form`
         margin-right: 10px;
     }
 
-    @media screen and (min-width: ${mediaPointCSS}px) {
+    @media screen and (min-width: ${MEDIA_POINT_CSS}px) {
         width: calc(100% - 330px);
     }
 `;

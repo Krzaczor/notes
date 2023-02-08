@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { mediaPointCSS } from 'consts';
+import { MEDIA_POINT_CSS } from 'consts';
 
 export const Navigation = styled.nav`
     align-items: center;
@@ -15,7 +15,7 @@ export const Navigation = styled.nav`
         margin-right: 15px;
     }
 
-    @media screen and (min-width: ${mediaPointCSS}px) {
+    @media screen and (min-width: ${MEDIA_POINT_CSS}px) {
         width: calc(100% - 330px);
     }
 `;

@@ -5,7 +5,7 @@ import { Category, CategoryList } from 'types';
 
 const getCurrentCategory = (categories: CategoryList, params: URLSearchParams) => {
     const categoryId = params.get('c');
-    return categories.find(category => category.id === categoryId);
+    return categories.find(({ id }) => id === categoryId);
 }
 
 export const useCategory = () => {
