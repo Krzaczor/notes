@@ -8,8 +8,4 @@ export const Input = styled.input`
     font-size: 1rem;
     padding: 0.7rem;
     width: 100%;
-
-    &::placeholder {
-        color: var(--color-input-text);
-    }
 `;
