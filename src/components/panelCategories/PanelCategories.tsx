@@ -48,8 +48,4 @@ function PanelCategories({ show, onClose }: Props) {
     );
 }
 
-PanelCategories.Title = Title;
-PanelCategories.Form = Form;
-PanelCategories.CategoriesList = CategoriesList;
-
 export default PanelCategories;
