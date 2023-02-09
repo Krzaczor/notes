@@ -10,7 +10,7 @@ import Settings from 'components/errorStorage/settings/Settings';
 
 const Layout = () => {
     const [canShowPanelCategories, setCanShowPanelCategories] = useState(false);
-    const { notes, error: errorNotes } = useNotesState();
+    const { notes } = useNotesState();
     const { categories, error: errorCategories } = useCategoriesState();
     const { settings, error: errorSettings } = useSettingsState();
 
@@ -22,7 +22,7 @@ const Layout = () => {
         setCanShowPanelCategories(false);
     }
 
-    if (errorNotes !== null || errorCategories !== null) {
+    if (errorCategories !== null) {
         return <CategoriesAndNotes />;
     }
 

@@ -4,13 +4,12 @@ import { Button } from 'components/shared/button/Button.styles';
 import * as S from './CategoriesAndNotes.styles';
 
 const CategoriesAndNotes = () => {
-    const { removeAllNotes, resetError: resetNotesError } = useNotesActions();
+    const { removeAllNotes } = useNotesActions();
     const { removeAllCategories, resetError: resetCategoriesError } = useCategoriesActions();
 
     const handleReset = () => {
         removeAllNotes();
         removeAllCategories();
-        resetNotesError();
         resetCategoriesError();
     }
 
