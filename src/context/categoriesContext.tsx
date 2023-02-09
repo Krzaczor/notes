@@ -65,19 +65,3 @@ export const useCategoriesActions = () => ({
     removeOneCategory,
     removeAllCategories
 })
-
-// import { useState, createContext, useContext, useEffect } from 'react';
-// import { nanoid } from 'nanoid';
-// import { getCategoriesStorage, setCategoriesStorage } from 'storage/categoriesStorage';
-// import {
-//     CategoriesActions,
-//     CategoriesProps,
-//     CategoriesState,
-//     CreateCategoryAction,
-//     RemoveAllCategoriesAction,
-//     RemoveOneCategoryAction,
-//     UpdateOneCategoryAction
-// } from './categoriesContext.types';
-// import { ErrorStorage, ResetErrorAction, CategoryList } from 'types';
-
-// export const useCategoriesActions = () => useContext(CategoriesContextActions);
