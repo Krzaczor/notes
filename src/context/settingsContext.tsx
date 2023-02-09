@@ -1,16 +1,11 @@
-import { useState, createContext, useContext, useEffect } from 'react';
-import { getSettingsStorage, setSettingsStorage } from 'storage/settingsStorage';
-import { ErrorStorage, ResetErrorAction, Settings } from 'types';
+import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
+import { Settings } from 'types';
 import {
-    SettingsProps,
     SettingsState,
-    SettingsActions,
     UpdateSettingAction,
     ResetSettingsAction,
 } from './settingsContext.types';
-
-const SettingsContextState = createContext<SettingsState>(null!);
-const SettingsContextActions = createContext<SettingsActions>(null!);
 
 const initSettings: Settings = {
     lightMode: false,
@@ -18,54 +13,39 @@ const initSettings: Settings = {
     displayCreateAtNote: false
 }
 
-export const SettingsProvider = ({ children }: SettingsProps) => {
-    const [error, setError] = useState<ErrorStorage>(null!);
-    const [settings, setSettings] = useState<Settings>(null!);
-
-    useEffect(() => {
-        try {
-            const settingStorage = getSettingsStorage();
-            setSettings(settingStorage ? settingStorage : initSettings);
-            setError(null);
-        } catch (error) {
-            setError((error as Error).message);
+export const useSettingsState = create(
+    persist<SettingsState>(
+        () => ({
+            settings: initSettings
+        }),
+        {
+            name: 'notes/settings'
         }
-    }, []);
-
-    useEffect(() => {
-        if (settings !== null) {
-            setSettingsStorage(settings);
-        }
-    }, [settings]);
-
-    const updateSetting: UpdateSettingAction = (key) => {
-        setSettings((state) => {
-            if (key in state) {
-                return { ...state, [key]: !state[key] }
-            }
-
-            return state;
-        })
-    }
-
-    const resetSettings: ResetSettingsAction = () => {
-        setSettings(initSettings);
-    }
-
-    const resetError: ResetErrorAction = () => setError(null);
-
-    return (
-        <SettingsContextState.Provider value={{ error, settings }}>
-            <SettingsContextActions.Provider value={{
-                updateSetting,
-                resetError,
-                resetSettings
-            }}>
-                { children }
-            </SettingsContextActions.Provider>
-        </SettingsContextState.Provider>
     )
+)
+
+const updateSetting: UpdateSettingAction = (key) => {
+    useSettingsState.setState((state) => {
+        if (key in state.settings) {
+            return {
+                settings: {
+                    ...state.settings,
+                    [key]: !state.settings[key]
+                } 
+            }
+        }
+
+        return state;
+    })
 }
 
-export const useSettingsState = () => useContext(SettingsContextState);
-export const useSettingsActions = () => useContext(SettingsContextActions);
+const resetSettings: ResetSettingsAction = () => {
+    useSettingsState.setState({
+        settings: initSettings
+    });
+}
+
+export const useSettingsActions = () => ({
+    updateSetting,
+    resetSettings,
+})

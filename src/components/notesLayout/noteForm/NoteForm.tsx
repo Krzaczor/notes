@@ -12,7 +12,7 @@ interface Props {
 
 const NoteForm = ({ category }: Props) => {
     const [contentValue, setContentValue] = useState('');
-    const { settings } = useSettingsState();
+    const defaultPriority = useSettingsState((s) => s.settings.defaultPriority);
     const { createNote } = useNotesActions();
 
     const handleChangeContentValue = (event: ChangeEvent<HTMLInputElement>) => {
@@ -29,7 +29,7 @@ const NoteForm = ({ category }: Props) => {
         createNote({
             category,
             content: contentValue.trim(),
-            priority: settings.defaultPriority
+            priority: defaultPriority
         });
 
         setContentValue('');

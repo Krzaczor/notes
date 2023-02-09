@@ -3,9 +3,9 @@ import { useSettingsState } from 'context/settingsContext'
 
 export const useLightMode = () => {
     const firstRender = useRef(true);
-    const { settings } = useSettingsState();
+    const lightMode = useSettingsState((s) => s.settings.lightMode);
 
-    document.querySelector('html')?.classList.toggle('light-mode', settings?.lightMode ?? false);
+    document.querySelector('html')?.classList.toggle('light-mode', lightMode ?? false);
 
     useEffect(() => {
         if (firstRender.current) {
@@ -13,6 +13,6 @@ export const useLightMode = () => {
             return;
         }
 
-        document.querySelector('html')?.classList.toggle('light-mode', settings?.lightMode ?? false);
-    }, [settings?.lightMode]);
+        document.querySelector('html')?.classList.toggle('light-mode', lightMode ?? false);
+    }, [lightMode]);
 }
