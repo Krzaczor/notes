@@ -1,89 +1,83 @@
-import { useState, createContext, useContext, useEffect } from 'react';
+import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
 import { nanoid } from 'nanoid';
-import { getCategoriesStorage, setCategoriesStorage } from 'storage/categoriesStorage';
 import {
-    CategoriesActions,
-    CategoriesProps,
     CategoriesState,
     CreateCategoryAction,
     RemoveAllCategoriesAction,
     RemoveOneCategoryAction,
     UpdateOneCategoryAction
 } from './categoriesContext.types';
-import { ErrorStorage, ResetErrorAction, CategoryList } from 'types';
-
-const CategoriesContextState = createContext<CategoriesState>(null!);
-const CategoriesContextActions = createContext<CategoriesActions>(null!);
+import { CategoryList } from 'types';
 
 const initCategories: CategoryList = [];
 
-export const CategoriesProvider = ({ children }: CategoriesProps) => {
-    const [error, setError] = useState<ErrorStorage>(null);
-    const [categories, setCategories] = useState<CategoryList>(null!);
-
-    useEffect(() => {
-        try {
-            const categoriesStorage = getCategoriesStorage();
-            setCategories(categoriesStorage ? categoriesStorage : initCategories);
-        } catch (error) {
-            setError((error as Error).message);
+export const useCategoriesState = create(
+    persist<CategoriesState>(
+        () => ({
+            categories: [],
+        }),
+        {
+            name: 'notes/categories'
         }
-    }, []);
+    )
+)
 
-    useEffect(() => {
-        if (categories !== null) {
-            setCategoriesStorage(categories);
-        }
-    }, [categories]);
-
-    const createCategory: CreateCategoryAction = (category) => {
-        setCategories(prevCategories => prevCategories.concat({
+const createCategory: CreateCategoryAction = (category) => {
+    useCategoriesState.setState(state => ({
+        categories: state.categories.concat({
             id: nanoid(8),
             createAt: new Date(),
             name: category.name,
-        }))
-    }
-
-    const updateOneCategory: UpdateOneCategoryAction = (id, fields) => {
-        setCategories(prevCategories => {
-            return prevCategories.map(category => {
-                if (category.id === id) {
-                    return Object.assign(category, fields);
-                }
-
-                return category;
-            })
         })
-    }
-
-    const removeOneCategory: RemoveOneCategoryAction = (id) => {
-        setCategories(prevCategories => {
-            return prevCategories.filter(category => {
-                return category.id !== id;
-            });
-        });
-    }
-
-    const removeAllCategories: RemoveAllCategoriesAction = () => {
-        setCategories(initCategories);
-    }
-
-    const resetError: ResetErrorAction = () => setError(null);
-
-    return (
-        <CategoriesContextState.Provider value={{ error, categories }}>
-            <CategoriesContextActions.Provider value={{
-                createCategory,
-                updateOneCategory,
-                removeOneCategory,
-                removeAllCategories,
-                resetError
-            }}>
-                { children }
-            </CategoriesContextActions.Provider>
-        </CategoriesContextState.Provider>
-    )
+    }))
 }
 
-export const useCategoriesState = () => useContext(CategoriesContextState);
-export const useCategoriesActions = () => useContext(CategoriesContextActions);
+const updateOneCategory: UpdateOneCategoryAction = (id, fields) => {
+    useCategoriesState.setState(state => ({
+        categories: state.categories.map(category => {
+            if (category.id === id) {
+                return Object.assign(category, fields);
+            }
+
+            return category;
+        })
+    }))
+}
+
+const removeOneCategory: RemoveOneCategoryAction = (id) => {
+    useCategoriesState.setState(state => ({
+        categories: state.categories.filter(category => {
+            return category.id !== id;
+        })
+    }));
+}
+
+const removeAllCategories: RemoveAllCategoriesAction = () => {
+    useCategoriesState.setState({
+        categories: initCategories
+    });
+}
+
+export const useCategoriesActions = () => ({
+    createCategory,
+    updateOneCategory,
+    removeOneCategory,
+    removeAllCategories
+})
+
+// import { useState, createContext, useContext, useEffect } from 'react';
+// import { nanoid } from 'nanoid';
+// import { getCategoriesStorage, setCategoriesStorage } from 'storage/categoriesStorage';
+// import {
+//     CategoriesActions,
+//     CategoriesProps,
+//     CategoriesState,
+//     CreateCategoryAction,
+//     RemoveAllCategoriesAction,
+//     RemoveOneCategoryAction,
+//     UpdateOneCategoryAction
+// } from './categoriesContext.types';
+// import { ErrorStorage, ResetErrorAction, CategoryList } from 'types';
+
+// export const useCategoriesActions = () => useContext(CategoriesContextActions);

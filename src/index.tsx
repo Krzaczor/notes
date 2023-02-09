@@ -1,7 +1,6 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { SettingsProvider } from 'context/settingsContext';
-import { CategoriesProvider } from 'context/categoriesContext';
 import { ListProvider } from 'context/modalContext';
 import App from './App';
 import GlobalStyles from 'globalStyles';
@@ -15,9 +14,7 @@ root.render(
         <GlobalStyles />
         <ListProvider>
             <SettingsProvider>
-                <CategoriesProvider>
-                    <App />
-                </CategoriesProvider>
+                <App />
             </SettingsProvider>
         </ListProvider>
     </StrictMode>
