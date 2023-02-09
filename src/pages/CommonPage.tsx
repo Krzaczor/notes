@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { BsListUl } from 'react-icons/bs';
 import { RiSettings5Fill } from 'react-icons/ri';
-import { useCategory } from 'hooks/useCategory';
 import { useMediaQuery } from 'hooks/useMediaQuery';
 import Button from 'components/shared/button/Button';
 import Navigation from 'components/navigation/Navigation';
@@ -15,7 +14,6 @@ interface Props {
 
 const CommonPage = ({ showPanelCategories }: Props) => {
     const [canShowPanelSettings, setCanShowPanelSettings] = useState(false);
-    const { currentCategory } = useCategory();
     const isLargeViewport = useMediaQuery(`(max-width: ${MEDIA_POINT}px)`);
 
     const showPanelSettings = () => {
@@ -41,7 +39,7 @@ const CommonPage = ({ showPanelCategories }: Props) => {
                         <BsListUl size={24} />
                     </Button>
                 )}
-                <CategoryName category={currentCategory} />
+                <CategoryName />
                 <Button variant='second' onClick={showPanelSettings}>
                     <RiSettings5Fill size={24} />
                 </Button>

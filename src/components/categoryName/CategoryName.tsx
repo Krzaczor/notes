@@ -1,16 +1,14 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { useCategoriesActions } from 'context/categoriesContext';
+import { useCategory } from 'hooks/useCategory';
 import useOnClickEsc from 'hooks/useOnClickEsc';
 import Input from 'components/shared/input/Input';
 import * as S from './CategoryName.styles';
 import { Category } from 'types';
 
-interface Props {
-    category: Category | undefined;
-}
-
-interface NameEditProps extends Props {
+interface NameEditProps {
     onStopEdit: () => void;
+    category: Category | undefined;
 }
 
 const CategoryNameEdit = ({ category, onStopEdit }: NameEditProps) => {
@@ -46,8 +44,9 @@ const CategoryNameEdit = ({ category, onStopEdit }: NameEditProps) => {
     )
 }
 
-const CategoryName = ({ category }: Props) => {
+const CategoryName = () => {
     const [isEdit, setIsEdit] = useState(false);
+    const { category } = useCategory();
 
     const handleStartEdit = () => {
         setIsEdit(true);

@@ -22,6 +22,6 @@ export const useCategory = () => {
 
     return {
         categoryId: category?.id,
-        currentCategory: category,
+        category,
     };
 }
