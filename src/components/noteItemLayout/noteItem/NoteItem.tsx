@@ -5,9 +5,9 @@ import * as S from './NoteItem.styles';
 import { Props } from './NoteItem.types';
 
 const NoteInfo = ({ note }: Props) => {
-    const { settings } = useSettingsState();
+    const displayCreateAtNote = useSettingsState((s) => s.settings.displayCreateAtNote);
 
-    if (!settings.displayCreateAtNote) {
+    if (!displayCreateAtNote) {
         return null;
     }
 
