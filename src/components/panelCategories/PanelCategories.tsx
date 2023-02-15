@@ -1,12 +1,10 @@
 import styled from 'styled-components';
 import { useMediaQuery } from 'hooks/useMediaQuery';
-import { useCategory } from 'hooks/useCategory';
-import { useListContextState } from 'context/modalContext';
+import { usePanelCategories, closePanelCategories } from 'context/panelCategoriesContext';
 import SidePanel from 'components/shared/sidePanel/SidePanel';
 import CategoriesList from './categoriesList/CategoriesList';
 import Form from './form/Form';
 import Title from './title/Title';
-import { Props } from './PanelCategories.types';
 
 const Categories = styled.div`
     background-color: var(--color-background-middle);
@@ -18,32 +16,26 @@ const Categories = styled.div`
     width: 330px;
 `;
 
-function PanelCategories({ show, onClose }: Props) {
-    const { categoryId } = useCategory();
-    const { showModal } = useListContextState();
+function PanelCategories() {
     const isSmallViewport = useMediaQuery('(max-width: 700px)');
+    const show = usePanelCategories();
 
     const Container = isSmallViewport ? SidePanel : Categories;
 
-    const onCloseCategory = () => {
-        if (!showModal) {
-            onClose();
-        }
+    if (!isSmallViewport) {
+        closePanelCategories();
     }
 
     return (
         <Container
             show={show}
-            onClose={onCloseCategory}
+            onClose={closePanelCategories}
             animateFrom='left'
             showOverlay
         >
             <Title />
             <Form />
-            <CategoriesList
-                categoryId={categoryId}
-                onCloseCategory={onCloseCategory}
-            />
+            <CategoriesList />
         </Container>
     );
 }

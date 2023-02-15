@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { FaTrash } from 'react-icons/fa';
-import { useListContextActions, useListContextState } from 'context/modalContext';
 import Link from 'components/shared/link/Link';
 import { useCategoriesActions } from 'context/categoriesContext';
 import Modal from 'components/shared/modal/Modal';
@@ -12,19 +11,15 @@ import { useNotesActions, useNotesState } from 'context/notesContext';
 const CategoryItem = ({ id, name, isActive, to, onCloseCategory }: Props) => {
     const [toRemove, setToRemove] = useState(false);
     const { removeOneCategory } = useCategoriesActions();
-    const { showModal } = useListContextState();
-    const { handleOpenModal, handleCloseModal } = useListContextActions();
     const { notes } = useNotesState();
     const { removeManyNotes } = useNotesActions();
 
     const handleToRemove = () => {
         setToRemove(true);
-        handleOpenModal();
     }
 
     const handleBackRemove = () => {
         setToRemove(false);
-        handleCloseModal();
     }
 
     const handleConfirm = () => {
@@ -37,7 +32,6 @@ const CategoryItem = ({ id, name, isActive, to, onCloseCategory }: Props) => {
         removeOneCategory(id);
         removeManyNotes(notesIdToNotes);
         setToRemove(false);
-        handleCloseModal();
     }
 
     const handleCloseCategory = () => {
@@ -58,7 +52,7 @@ const CategoryItem = ({ id, name, isActive, to, onCloseCategory }: Props) => {
                 <FaTrash size={20} color='var(--color-danger)' />
             </Button> }
             <Modal
-                show={showModal && toRemove}
+                show={toRemove}
                 title='Usuń kategorie'
                 message='Utracisz notatki należące do tej kategorii.'
                 contentCancel='Jednak nie'

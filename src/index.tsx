@@ -1,6 +1,5 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { ListProvider } from 'context/modalContext';
 import App from './App';
 import GlobalStyles from 'globalStyles';
 import reportWebVitals from './reportWebVitals';
@@ -11,9 +10,7 @@ const root = createRoot(
 root.render(
     <StrictMode>
         <GlobalStyles />
-        <ListProvider>
-            <App />
-        </ListProvider>
+        <App />
     </StrictMode>
 );
 

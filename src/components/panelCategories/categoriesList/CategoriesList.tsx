@@ -1,13 +1,11 @@
 import { useCategoriesState } from 'context/categoriesContext';
+import { closePanelCategories } from 'context/panelCategoriesContext';
+import { useCategory } from 'hooks/useCategory';
 import CategoryItem from './categoryItem/CategoryItem';
 import * as S from './CategoriesList.styles';
 
-interface Props {
-    categoryId: string | undefined;
-    onCloseCategory: () => void;
-}
-
-const CategoriesList = ({ categoryId, onCloseCategory }: Props) => {
+const CategoriesList = () => {
+    const { categoryId } = useCategory();
     const { categories } = useCategoriesState();
 
     return (
@@ -16,7 +14,7 @@ const CategoriesList = ({ categoryId, onCloseCategory }: Props) => {
                 name='Wszystkie notatki'
                 to='/all'
                 isActive={!categoryId}
-                onCloseCategory={onCloseCategory}
+                onCloseCategory={closePanelCategories}
             />
             {categories.map(({ id, name }) => (
                 <CategoryItem
@@ -25,7 +23,7 @@ const CategoriesList = ({ categoryId, onCloseCategory }: Props) => {
                     id={id}
                     to={`/all?c=${id}`}
                     isActive={categoryId === id}
-                    onCloseCategory={onCloseCategory}
+                    onCloseCategory={closePanelCategories}
                 />
             ))}
         </S.CategoriesList>
