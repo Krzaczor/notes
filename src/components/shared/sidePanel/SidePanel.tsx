@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { Transition, easings } from 'react-spring';
 import useOnClickEsc from 'hooks/useOnClickEsc';
 import useOnClickOutside from 'hooks/useOnClickOutside';
@@ -41,6 +41,10 @@ const SidePanel = ({ show, onClose, showOverlay = false, animateFrom, children }
 
     useOnClickOutside(sidePanelRef, onClose);
     useOnClickEsc(() => show && onClose());
+
+    useEffect(() => {
+        return onClose;
+    }, [onClose]);
 
     return (
         <>

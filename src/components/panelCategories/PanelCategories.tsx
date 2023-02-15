@@ -22,10 +22,6 @@ function PanelCategories() {
 
     const Container = isSmallViewport ? SidePanel : Categories;
 
-    if (!isSmallViewport) {
-        closePanelCategories();
-    }
-
     return (
         <Container
             show={show}
