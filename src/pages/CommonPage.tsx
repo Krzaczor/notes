@@ -9,9 +9,22 @@ import CategoryName from 'components/categoryName/CategoryName';
 import PanelSettings from 'components/panelSettings/PanelSettings';
 import { MEDIA_POINT } from 'consts';
 
+const ButtonOpenCategories = () => {
+    const isLargeViewport = useMediaQuery(`(max-width: ${MEDIA_POINT}px)`);
+
+    if (!isLargeViewport) {
+        return null;
+    }
+
+    return (
+        <Button variant='second' onClick={openPanelCategories}>
+            <BsListUl size={24} />
+        </Button>
+    )
+}
+
 const CommonPage = () => {
     const [canShowPanelSettings, setCanShowPanelSettings] = useState(false);
-    const isLargeViewport = useMediaQuery(`(max-width: ${MEDIA_POINT}px)`);
 
     const showPanelSettings = () => {
         setCanShowPanelSettings(true);
@@ -31,11 +44,7 @@ const CommonPage = () => {
                 <PanelSettings.SettingsList />
             </PanelSettings>
             <Navigation>
-                {isLargeViewport && (
-                    <Button variant='second' onClick={openPanelCategories}>
-                        <BsListUl size={24} />
-                    </Button>
-                )}
+                <ButtonOpenCategories />
                 <CategoryName />
                 <Button variant='second' onClick={showPanelSettings}>
                     <RiSettings5Fill size={24} />
