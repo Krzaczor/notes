@@ -15,7 +15,7 @@ const NavNotes = () => {
     const btnRef = useRef<HTMLButtonElement>(null!);
     const { categoryId } = useCategory();
 
-    const currentNoteIds = notes.map(note => note.id);
+    const currentNoteIds = notes.filter(note => note.category === categoryId).map(note => note.id);
 
     const handleToggleMoreOptions = () => {
         setShowMoreOptions(prev => !prev);
