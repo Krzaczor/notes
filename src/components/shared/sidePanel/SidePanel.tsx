@@ -44,7 +44,7 @@ const SidePanel = ({ show, onClose, showOverlay = false, animateFrom, children }
 
     useEffect(() => {
         return onClose;
-    }, [onClose]);
+    }, []);
 
     return (
         <>
