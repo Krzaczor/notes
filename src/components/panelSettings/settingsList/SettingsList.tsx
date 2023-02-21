@@ -1,5 +1,5 @@
 import { useSettingsState } from 'context/settingsContext';
-import SettingItem from './settingItem/SettingItem';
+import { SettingItem, LightModeItem } from './settingItem/SettingItem';
 import * as S from './SettingsList.styles';
 import { Settings } from 'types';
 
@@ -15,9 +15,13 @@ const SettingsList = () => {
 
     return (
         <S.SettingsList>
-            {settingsList.map(([ name, checked ]) => (
-                <SettingItem key={name} name={name} checked={checked} />
-            ))}
+            {settingsList.map(([ name, checked ]) => {
+                if (name === 'lightMode') {
+                    return <LightModeItem key={name} name={name} checked={checked} />
+                }
+
+                return <SettingItem key={name} name={name} checked={checked} />
+            })}
         </S.SettingsList>
     )
 }

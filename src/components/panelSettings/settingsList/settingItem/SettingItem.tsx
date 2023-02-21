@@ -1,7 +1,8 @@
 import { useSettingsActions } from 'context/settingsContext';
+import { useLightMode } from 'hooks/useLightMode';
+import Checkbox from 'components/shared/checkbox/Checkbox';
 import * as S from './SettingItem.styles';
 import { Settings } from 'types';
-import Checkbox from 'components/shared/checkbox/Checkbox';
 
 interface Props {
     name: keyof Settings;
@@ -16,7 +17,15 @@ const settingNames: {
     displayCreateAtNote: 'Wyświetl czas utworzenia',
 }
 
-const SettingItem = ({ name, checked }: Props) => {
+export const LightModeItem = ({ name, checked }: Props) => {
+    useLightMode();
+
+    return (
+        <SettingItem name={name} checked={checked} />
+    )
+}
+
+export const SettingItem = ({ name, checked }: Props) => {
     const { updateSetting } = useSettingsActions();
 
     const handleToggleSetting = () => {
@@ -30,5 +39,3 @@ const SettingItem = ({ name, checked }: Props) => {
         </S.SettingItem>
     )
 }
-
-export default SettingItem;

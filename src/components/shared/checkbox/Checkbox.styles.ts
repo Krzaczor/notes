@@ -23,7 +23,7 @@ export const Checkbox = styled.label`
 `;
 
 export const Input = styled.input`
-    visibility: collapse;
+    opacity: 0;
     position: absolute;
 
     &:checked+${Checkbox} {
@@ -36,5 +36,9 @@ export const Input = styled.input`
 
     &:checked+${Checkbox}:before {
         transform: translate(36px, -50%);
+    }
+
+    &:focus+${Checkbox} {
+        outline: auto;
     }
 `;

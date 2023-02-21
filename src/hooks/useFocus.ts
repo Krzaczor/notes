@@ -13,9 +13,9 @@ const isDisabled = (element: any) => {
     return element.hasAttribute('disabled');
 }
 
-function getFocusableElements(node: any): HTMLElement[] {
+function getFocusableElements(node: any): any[] {
     return [...node.querySelectorAll('a[href], button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])')]
-        .filter(el => !isDisabled(el) && hasSize(el) && !isHidden(el)) as HTMLElement[];
+        .filter(el => !isDisabled(el) && hasSize(el) && !isHidden(el)) as any[];
 }
 
 const getActiveElement = () => {
@@ -24,7 +24,6 @@ const getActiveElement = () => {
 
 const focusMenager = (event: any, node: any) => {
     const elements = getFocusableElements(node);
-    console.log(elements);
     
     if (elements.length === 0) {
         event.preventDefault();
@@ -47,6 +46,16 @@ const focusMenager = (event: any, node: any) => {
     
     if (nextFocusElement) {
         event.preventDefault();
+        nextFocusElement.focus();
+        return;
+    }
+
+    const currentElement = elements.includes(activeElement);
+
+    if (!currentElement) {
+        event.preventDefault();
+
+        nextFocusElement = event.shiftKey ? lastElement : firstElement;
         nextFocusElement.focus();
     }
 }

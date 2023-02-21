@@ -17,7 +17,7 @@ const Checkbox = ({ checked, onChange }: Props) => {
                 checked={checked}
                 onChange={onChange}
             />
-            <S.Checkbox htmlFor={id}></S.Checkbox>
+            <S.Checkbox htmlFor={id} />
         </>
     )
 }
