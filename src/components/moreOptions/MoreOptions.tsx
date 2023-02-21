@@ -1,15 +1,16 @@
 import { useRef } from 'react';
-import useOnClickEsc from 'hooks/useOnClickEsc';
+import { useFocus } from 'hooks/useFocus';
 import useOnClickOutside from 'hooks/useOnClickOutside';
 import * as S from './MoreOptions.styles';
 import { OptionsProps, Props } from './MoreOptions.types';
 
-const Options = ({ onClose, listRef, children }: OptionsProps) => {
-    useOnClickEsc(onClose);
+const Options = ({ show, onClose, listRef, children }: OptionsProps) => {
+    const focus = useFocus(show, onClose);
+
     useOnClickOutside(listRef, onClose);
 
     return (
-        <S.Options style={{ transform: `translateY(40px)` }}>{ children }</S.Options>
+        <S.Options style={{ transform: `translateY(40px)` }} {...focus}>{ children }</S.Options>
     )
 }
 
@@ -23,6 +24,7 @@ const MoreOptions = ({ show, onClose, element, children }: Props) => {
                 <Options
                     listRef={listRef}
                     onClose={onClose}
+                    show={show}
                 >
                     { children }
                 </Options>

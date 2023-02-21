@@ -11,4 +11,5 @@ export interface OptionsProps {
     listRef: RefObject<HTMLDivElement>;
     children: ReactNode;
     onClose: () => void;
+    show: boolean;
 }

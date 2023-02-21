@@ -1,8 +1,8 @@
 import { createPortal } from 'react-dom';
 import { Transition } from 'react-spring';
-import useOnClickEsc from 'hooks/useOnClickEsc';
 import Button from 'components/shared/button/Button';
 import * as S from './Modal.styles';
+import { useFocus } from 'hooks/useFocus';
 
 interface Props {
     show: boolean;
@@ -23,16 +23,19 @@ const ModalPortal = ({
     onCancel = () => {},
     onConfirm
 }: Props) => {
-    useOnClickEsc(onCancel);
+    const focus = useFocus(show, onCancel);
     
-        return (
+    return (
         <Transition
             items={show}
         >
             {(styles, item) => (
                 item && (
                     <S.ModalContainer>
-                        <S.Modal style={styles}>
+                        <S.Modal
+                            style={styles}
+                            {...focus}
+                        >
                             { title && <S.Header>{ title }</S.Header> }
                             <S.Body>{ message }</S.Body>
                             <S.Actions>
