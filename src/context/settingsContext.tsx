@@ -16,7 +16,8 @@ const initSettings: Settings = {
 export const useSettingsState = create(
     persist<SettingsState>(
         () => ({
-            settings: initSettings
+            settings: initSettings,
+            namesSetings: Object.entries(initSettings).map(setting => setting[0]) as SettingsState['namesSetings'],
         }),
         {
             name: 'notes/settings'

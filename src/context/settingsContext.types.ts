@@ -5,4 +5,5 @@ export type ResetSettingsAction = () => void;
 
 export interface SettingsState {
     settings: Settings;
+    namesSetings: (keyof Settings)[];
 }
