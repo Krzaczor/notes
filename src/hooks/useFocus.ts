@@ -1,28 +1,32 @@
-import { KeyboardEventHandler, useRef } from 'react';
+import { KeyboardEvent, KeyboardEventHandler, useRef } from 'react';
 
-const isHidden = (element: any) => {
+const isHidden = (element: Element) => {
     const styles = window.getComputedStyle(element);
     return styles.display === 'none' || styles.visibility === 'collapse' || element.getAttribute('aria-hidden');
 }
 
-const hasSize = (element: any) => {
+const hasSize = (element: Element) => {
     return element.clientWidth > 0 && element.clientHeight > 0;
 }
 
-const isDisabled = (element: any) => {
+const isDisabled = (element: Element) => {
     return element.hasAttribute('disabled');
 }
 
-function getFocusableElements(node: any): any[] {
+function getFocusableElements(node: HTMLElement | null) {
+    if (node === null) {
+        return [];
+    }
+
     return [...node.querySelectorAll('a[href], button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])')]
-        .filter(el => !isDisabled(el) && hasSize(el) && !isHidden(el)) as any[];
+        .filter(el => !isDisabled(el) && hasSize(el) && !isHidden(el)) as HTMLElement[];
 }
 
 const getActiveElement = () => {
     return document.activeElement;
 }
 
-const focusMenager = (event: any, node: any) => {
+const focusMenager = (event: KeyboardEvent<HTMLElement>, node: HTMLElement | null) => {
     const elements = getFocusableElements(node);
     
     if (elements.length === 0) {
@@ -32,9 +36,9 @@ const focusMenager = (event: any, node: any) => {
     
     const firstElement = elements[0];
     const lastElement = elements[elements.length - 1];
-    const activeElement = getActiveElement();
+    const activeElement = getActiveElement() as HTMLElement;
     
-    let nextFocusElement;
+    let nextFocusElement: HTMLElement | undefined;
 
     if (!event.shiftKey && lastElement === activeElement) {
         nextFocusElement = firstElement;
@@ -50,6 +54,10 @@ const focusMenager = (event: any, node: any) => {
         return;
     }
 
+    if (activeElement === null) {
+        return;
+    }
+
     const currentElement = elements.includes(activeElement);
 
     if (!currentElement) {
@@ -60,14 +68,13 @@ const focusMenager = (event: any, node: any) => {
     }
 }
 
-export const useFocus = (show: boolean, onClose: any) => {
-    const wrapper = useRef<any>(null!);
-    const previousActiveElement = useRef<any>(null!);
+export const useFocus = (show: boolean, onClose: (event: KeyboardEvent<HTMLElement>) => void) => {
+    const wrapper = useRef<HTMLElement | null>(null);
+    const previousActiveElement = useRef<HTMLElement | null>(null);
 
-    const setContentElement = (show: boolean, node: any) => {
-        wrapper.current = node;
-
+    const setContentElement = (show: boolean, node: HTMLElement | null) => {
         if (show && node) {
+            wrapper.current = node;
             previousActiveElement.current = document.activeElement as HTMLElement;
             node.focus();
         } else {
@@ -75,14 +82,14 @@ export const useFocus = (show: boolean, onClose: any) => {
         }
     }
 
-    const handleKeyDown: KeyboardEventHandler<HTMLDivElement> = (event) => {
+    const handleKeyDown: KeyboardEventHandler<HTMLElement> = (event) => {
         if (!show) {
             return;
         }
 
         if (event.key === 'Escape') {
             event.stopPropagation();
-            onClose();
+            onClose(event);
         }
 
         if (event.key === 'Tab') {
@@ -90,7 +97,7 @@ export const useFocus = (show: boolean, onClose: any) => {
         }
     }
 
-    const onRender = (node: any) => {
+    const onRender = (node: HTMLElement | null) => {
         setContentElement(show, node);
     }
 
