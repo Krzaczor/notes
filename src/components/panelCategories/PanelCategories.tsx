@@ -1,3 +1,4 @@
+import { ReactNode } from 'react';
 import styled from 'styled-components';
 import { useMediaQuery } from 'hooks/useMediaQuery';
 import { usePanelCategories, closePanelCategories } from 'context/panelCategoriesContext';
@@ -16,7 +17,11 @@ const Categories = styled.div`
     width: 330px;
 `;
 
-function PanelCategories() {
+interface Props {
+    children: ReactNode;
+}
+
+function PanelCategories({ children }: Props) {
     const isSmallViewport = useMediaQuery('(max-width: 700px)');
     const show = usePanelCategories();
 
@@ -29,11 +34,13 @@ function PanelCategories() {
             animateFrom='left'
             showOverlay
         >
-            <Title />
-            <Form />
-            <CategoriesList />
+            { children }
         </Container>
     );
 }
+
+PanelCategories.Title = Title;
+PanelCategories.Form = Form;
+PanelCategories.CategoriesList = CategoriesList;
 
 export default PanelCategories;

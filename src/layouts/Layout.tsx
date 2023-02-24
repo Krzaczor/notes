@@ -8,7 +8,11 @@ const Layout = () => {
         <>
             {null && <Settings />} 
             <div style={{ display: 'flex', height: '100%' }}>
-                <PanelCategories />
+                <PanelCategories>
+                    <PanelCategories.Title />
+                    <PanelCategories.Form />
+                    <PanelCategories.CategoriesList />
+                </PanelCategories>
                 <div style={{ flex: 1, overflow: 'hidden' }}>
                     <CommonPage />
                     <Outlet />
