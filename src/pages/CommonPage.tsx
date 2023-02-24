@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { BsListUl } from 'react-icons/bs';
 import { RiSettings5Fill } from 'react-icons/ri';
 import { useMediaQuery } from 'hooks/useMediaQuery';
@@ -8,6 +7,7 @@ import Navigation from 'components/navigation/Navigation';
 import CategoryName from 'components/categoryName/CategoryName';
 import PanelSettings from 'components/panelSettings/PanelSettings';
 import { MEDIA_POINT } from 'consts';
+import { showPanelSettings } from 'context/panelSettingsContext';
 
 const ButtonOpenCategories = () => {
     const isLargeViewport = useMediaQuery(`(max-width: ${MEDIA_POINT}px)`);
@@ -24,22 +24,9 @@ const ButtonOpenCategories = () => {
 }
 
 const CommonPage = () => {
-    const [canShowPanelSettings, setCanShowPanelSettings] = useState(false);
-
-    const showPanelSettings = () => {
-        setCanShowPanelSettings(true);
-    }
-
-    const hidePanelSettings = () => {
-        setCanShowPanelSettings(false);
-    }
-
     return (
         <>
-            <PanelSettings
-                show={canShowPanelSettings}
-                onClose={hidePanelSettings}
-            >
+            <PanelSettings>
                 <PanelSettings.Title />
                 <PanelSettings.SettingsList />
             </PanelSettings>

@@ -2,12 +2,15 @@ import SidePanel from 'components/shared/sidePanel/SidePanel';
 import SettingsList from './settingsList/SettingsList';
 import Title from './title/Title';
 import { Props } from './PanelSettings.types';
+import { usePanelCategories, hidePanelSettings } from 'context/panelSettingsContext';
 
-function PanelSettings({ children, show, onClose }: Props) {
+function PanelSettings({ children }: Props) {
+    const show = usePanelCategories();
+
     return (
         <SidePanel
             show={show}
-            onClose={onClose}
+            onClose={hidePanelSettings}
             animateFrom='right'
             showOverlay
         >
