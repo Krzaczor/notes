@@ -1,7 +1,7 @@
 import { useSettingsActions, useSettingsState } from 'context/settingsContext';
 import { useLightMode } from 'hooks/useLightMode';
 import Checkbox from 'components/shared/checkbox/Checkbox';
-import * as S from './SettingItem.styles';
+import s from './SettingItem.module.scss';
 import { Settings } from 'types';
 
 interface Props {
@@ -31,9 +31,9 @@ export const SettingItem = ({ name }: Props) => {
     }
 
     return (
-        <S.SettingItem>
+        <div className={s.root}>
             <p>{ settingNames[name] }</p>
             <Checkbox onChange={handleToggleSetting} checked={checked} />
-        </S.SettingItem>
+        </div>
     )
 }

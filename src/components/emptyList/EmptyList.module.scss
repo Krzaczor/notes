@@ -1,6 +1,4 @@
-import styled from 'styled-components';
-
-export const EmptyList = styled.div`
+.root {
     background-color: var(--color-background);
     color: var(--color-text);
     display: flex;
@@ -8,8 +6,8 @@ export const EmptyList = styled.div`
     flex: 1;
     align-items: center;
     justify-content: center;
-
+    
     & > *:not(:last-child) {
         margin-bottom: 10px;
     }
-`
+}

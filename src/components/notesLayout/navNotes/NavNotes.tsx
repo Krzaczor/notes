@@ -1,12 +1,18 @@
 import { useRef, useState, useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
 import { RiMore2Fill } from 'react-icons/ri';
+import clsx from 'clsx';
 import { getUrlCategory } from 'utils/getUrlCategory';
 import { useNotesActions, useNotesState } from 'context/notesContext';
 import { useCategory } from 'hooks/useCategory';
 import Actions from 'components/shared/actions/Actions';
 import Button from 'components/shared/button/Button';
 import MoreOptions from 'components/moreOptions/MoreOptions';
-import * as S from './NavNotes.styles';
+import s from './NavNotes.module.scss';
+
+const getClassesLink = (p: { isActive: boolean }) => {
+    return clsx(s.link, { [s.active]: p.isActive });
+}
 
 const NavNotes = () => {
     const [showMoreOptions, setShowMoreOptions] = useState(false);
@@ -65,9 +71,9 @@ const NavNotes = () => {
                 <Button fluid onClick={handleUndoneAllNotes}>oznacz zadania jako niezatwierdzone</Button>
                 <Button fluid variant='outline-danger' onClick={handleRemoveAllNotes}>usuń wszystkie zadania</Button>
             </MoreOptions>
-            <S.Link to={getUrlCategory('/all', categoryId)} replace>ogółem</S.Link>
-            <S.Link to={getUrlCategory('/undone', categoryId)} replace>nie zrobione</S.Link>
-            <S.Link to={getUrlCategory('/priority', categoryId)} replace>ważne</S.Link>
+            <NavLink className={getClassesLink} to={getUrlCategory('/all', categoryId)} replace>ogółem</NavLink>
+            <NavLink className={getClassesLink} to={getUrlCategory('/undone', categoryId)} replace>nie zrobione</NavLink>
+            <NavLink className={getClassesLink} to={getUrlCategory('/priority', categoryId)} replace>ważne</NavLink>
         </Actions>
     );
 }

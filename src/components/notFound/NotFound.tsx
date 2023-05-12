@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
-import * as S from './NotFound.styles';
+import Main from 'components/shared/main/Main';
+import s from './NotFound.module.scss';
 
 interface Props {
     children: ReactNode;
@@ -7,7 +8,7 @@ interface Props {
 
 const NotFound = ({ children }: Props) => {
     return (
-        <S.NotFound>{ children }</S.NotFound>
+        <Main className={s.root}>{ children }</Main>
     )
 }
 

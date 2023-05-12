@@ -1,7 +1,7 @@
-import * as S from './Title.styles';
+import s from './Title.module.scss';
 
 const Title = () => {
-    return <S.Title>kategorie</S.Title>
+    return <p className={s.root}>kategorie</p>
 }
 
 export default Title;

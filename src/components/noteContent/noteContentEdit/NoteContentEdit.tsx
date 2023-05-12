@@ -2,7 +2,7 @@ import { ChangeEvent, FormEvent, useState } from 'react';
 import { useNotesActions } from 'context/notesContext';
 import useOnClickEsc from 'hooks/useOnClickEsc';
 import Input from 'components/shared/input/Input';
-import * as S from './NoteContentEdit.styles';
+import s from './NoteContentEdit.module.scss';
 import { Props } from './NoteContentEdit.types';
 
 const NoteContentEdit = ({ note, onStopEdit }: Props) => {
@@ -32,14 +32,16 @@ const NoteContentEdit = ({ note, onStopEdit }: Props) => {
     useOnClickEsc(onStopEdit);
 
     return (
-        <S.NoteContentEdit onSubmit={handleUpdateContentNote}>
+        <form
+            className={s.root}
+            onSubmit={handleUpdateContentNote}>
             <Input
                 value={tempValue}
                 onChange={handleTempValue}
                 onBlur={onStopEdit}
                 autoFocus
             />
-        </S.NoteContentEdit>
+        </form>
     )
 }
 

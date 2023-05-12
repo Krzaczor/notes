@@ -5,6 +5,5 @@ export interface Props {
     variant?: 'primary' | 'second' | 'outline-danger' | 'dark';
     size?: 'normal' | 'lg';
     fluid?: boolean;
-    href?: string;
     onClick?: () => void;
 }

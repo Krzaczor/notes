@@ -4,7 +4,7 @@ import { useNotesActions } from 'context/notesContext';
 import { useSettingsState } from 'context/settingsContext';
 import Button from 'components/shared/button/Button';
 import Input from 'components/shared/input/Input';
-import * as S from './NoteForm.styles';
+import s from './NoteForm.module.scss';
 
 interface Props {
     category: string;
@@ -36,7 +36,7 @@ const NoteForm = ({ category }: Props) => {
     }
 
     return (
-        <S.NoteForm onSubmit={handleSubmit}>
+        <form className={s.root} onSubmit={handleSubmit}>
             <Input
                 type='text'
                 placeholder='Treść nowej notki'
@@ -46,7 +46,7 @@ const NoteForm = ({ category }: Props) => {
             <Button variant='primary'>
                 <BsPlusLg size={22} color='var(--color-light)' />
             </Button>
-        </S.NoteForm>
+        </form>
     )
 }
 
