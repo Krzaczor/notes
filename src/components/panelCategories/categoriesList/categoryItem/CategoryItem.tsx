@@ -35,15 +35,11 @@ const CategoryItem = ({ id, name, isActive, to, onCloseCategory }: Props) => {
         setToRemove(false);
     }
 
-    const handleCloseCategory = () => {
-        setTimeout(onCloseCategory, 200);
-    }
-
     return (
         <li className={clsx(s.root, { [s.active]: isActive })}>
             <Link
                 to={to}
-                onClick={handleCloseCategory}
+                onClick={onCloseCategory}
             >
                 { name }
             </Link>

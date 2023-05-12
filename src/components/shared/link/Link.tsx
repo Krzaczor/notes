@@ -21,11 +21,11 @@ const Link = forwardRef<HTMLAnchorElement, Props>(({
     variant,
     size,
     fluid,
-    to
+    ...props
 }, ref) => {
     return (
         <RouterLink
-            to={to}
+            {...props}
             ref={ref}
             className={clsx(s.root, {
                 [s[variant!]]: variant && variant in variants,
