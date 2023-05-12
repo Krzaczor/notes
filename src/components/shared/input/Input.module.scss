@@ -1,6 +1,4 @@
-import styled from 'styled-components';
-
-export const Input = styled.input`
+.root {
     background-color: var(--color-input-background);
     border: none;
     border-radius: var(--radius);
@@ -8,4 +6,4 @@ export const Input = styled.input`
     font-size: 1rem;
     padding: 0.7rem;
     width: 100%;
-`;
+}

@@ -1,4 +1,4 @@
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import {
     BsExclamationCircle,
     BsExclamationCircleFill,
@@ -8,7 +8,7 @@ import {
 import { getUrlCategory } from 'utils/getUrlCategory';
 import { useNotesActions } from 'context/notesContext';
 import Button from 'components/shared/button/Button';
-import * as S from './NoteItem.styles';
+import s from './NoteItem.module.scss';
 import { Note } from 'types';
 
 interface Props extends Note {
@@ -32,7 +32,7 @@ const NoteItem = ({ id, content, done, priority, categoryId }: Props) => {
     }
 
     return (
-        <S.NoteItem>
+        <li className={s.root}>
             <Button onClick={handleToggleDoneNote}>
                 {!!done ? (
                     <BsCheckCircleFill color='var(--color-success)' size={26} />
@@ -47,11 +47,12 @@ const NoteItem = ({ id, content, done, priority, categoryId }: Props) => {
                     <BsExclamationCircle color='var(--color-text)' size={26} />
                 )}
             </Button>
-            <S.NoteLink
+            <Link
+                className={s.link}
                 to={getUrlCategory(`/${id}`, categoryId)}
                 state={{ prevLocation: `${pathname}${search}` }}
-            >{ content }</S.NoteLink>
-        </S.NoteItem>
+            >{ content }</Link>
+        </li>
     )
 }
 

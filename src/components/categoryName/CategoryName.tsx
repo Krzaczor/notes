@@ -3,7 +3,7 @@ import { useCategoriesActions } from 'context/categoriesContext';
 import { useCategory } from 'hooks/useCategory';
 import useOnClickEsc from 'hooks/useOnClickEsc';
 import Input from 'components/shared/input/Input';
-import * as S from './CategoryName.styles';
+import s from './CategoryName.module.css';
 import { Category } from 'types';
 
 interface NameEditProps {
@@ -58,7 +58,7 @@ const CategoryName = () => {
 
     if (!category) {
         return (
-            <S.CategoryName>Wszystkie notatki</S.CategoryName>
+            <h1 className={s.root}>Wszystkie notatki</h1>
         );
     }
 
@@ -72,12 +72,13 @@ const CategoryName = () => {
     }
 
     return (
-        <S.CategoryName
+        <h1
+            className={s.root}
             tabIndex={0}
             onClick={handleStartEdit}
         >
             { category.name }
-        </S.CategoryName>
+        </h1>
     )
 }
 

@@ -3,7 +3,7 @@ import { BsPlusLg } from 'react-icons/bs';
 import { useCategoriesActions } from 'context/categoriesContext';
 import Input from 'components/shared/input/Input';
 import Button from 'components/shared/button/Button';
-import * as S from './Form.styles';
+import s from './Form.module.scss';
 
 const Form = () => {
     const [name, setName] = useState('');
@@ -28,7 +28,7 @@ const Form = () => {
     }
 
     return (
-        <S.Form onSubmit={handleCreateCategory}>
+        <form className={s.root} onSubmit={handleCreateCategory}>
             <Input
                 type='text'
                 value={name}
@@ -38,7 +38,7 @@ const Form = () => {
             <Button variant='primary'>
                 <BsPlusLg size={22} color='var(--color-light)' />
             </Button>
-        </S.Form>
+        </form>
     )
 }
 

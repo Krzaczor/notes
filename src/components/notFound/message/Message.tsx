@@ -1,4 +1,4 @@
-import * as S from './Message.styles';
+import s from './Message.module.scss';
 
 interface Props {
     children: string;
@@ -6,7 +6,7 @@ interface Props {
 
 const Message = ({ children }: Props) => {
     return (
-        <S.Message>{ children }</S.Message>
+        <p className={s.root}>{ children }</p>
     )
 }
 

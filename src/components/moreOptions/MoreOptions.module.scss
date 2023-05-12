@@ -1,11 +1,9 @@
-import styled from 'styled-components';
-
-export const MoreOptions = styled.div`
+.root {
     position: relative;
     display: inline-block;
-`;
+}
 
-export const Options = styled.div`
+.optionsMore {
     align-content: center;
     background-color: var(--color-background-darkest);
     border-radius: var(--radius);
@@ -18,14 +16,14 @@ export const Options = styled.div`
     left: 0;
     top: 0;
     z-index: 2;
-
+    
     & > * {
         cursor: pointer;
         text-align: left;
         white-space: nowrap;
     }
-
+    
     & > *:not(:last-child) {
         margin-bottom: 5px;
     }
-`
+}

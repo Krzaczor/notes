@@ -1,7 +1,4 @@
-import { NavLink } from 'react-router-dom';
-import styled from 'styled-components';
-
-export const Link = styled(NavLink)`
+.link {
     background-color: transparent;
     border: 1px solid transparent;
     border-radius: var(--radius);
@@ -14,9 +11,9 @@ export const Link = styled(NavLink)`
     text-decoration: none;
     text-align: center;
     vertical-align: middle;
+}
 
-    &.active {
-        background-color: var(--color-background-darkest);
-        color: var(--color-text);
-    }
-`;
+.link.active {
+    background-color: var(--color-background-darkest);
+    color: var(--color-text);
+}

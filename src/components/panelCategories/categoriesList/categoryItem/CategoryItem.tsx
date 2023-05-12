@@ -4,9 +4,10 @@ import Link from 'components/shared/link/Link';
 import { useCategoriesActions } from 'context/categoriesContext';
 import Modal from 'components/shared/modal/Modal';
 import Button from 'components/shared/button/Button';
-import * as S from './CategoryItem.styles';
+import s from './CategoryItem.module.scss';
 import { Props } from './CategoryItem.types';
 import { useNotesActions, useNotesState } from 'context/notesContext';
+import clsx from 'clsx';
 
 const CategoryItem = ({ id, name, isActive, to, onCloseCategory }: Props) => {
     const [toRemove, setToRemove] = useState(false);
@@ -39,9 +40,7 @@ const CategoryItem = ({ id, name, isActive, to, onCloseCategory }: Props) => {
     }
 
     return (
-        <S.CategoryItem
-            className={isActive ? 'active' : ''}
-        >
+        <li className={clsx(s.root, { [s.active]: isActive })}>
             <Link
                 to={to}
                 onClick={handleCloseCategory}
@@ -60,7 +59,7 @@ const CategoryItem = ({ id, name, isActive, to, onCloseCategory }: Props) => {
                 onCancel={handleBackRemove}
                 onConfirm={handleConfirm}
             />
-        </S.CategoryItem>
+        </li>
     )
 }
 

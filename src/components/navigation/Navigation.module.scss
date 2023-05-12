@@ -1,7 +1,6 @@
-import styled from 'styled-components';
-import { MEDIA_POINT_CSS } from 'consts';
+@import '/src/consts.scss';
 
-export const Navigation = styled.nav`
+.root {
     align-items: center;
     background-color: var(--color-background-darkest);
     color: var(--color-text);
@@ -10,12 +9,14 @@ export const Navigation = styled.nav`
     padding: 10px var(--padding-container);
     position: fixed;
     width: 100%;
-
+    
     & > *:not(:last-child) {
         margin-right: 15px;
     }
+}
 
-    @media screen and (min-width: ${MEDIA_POINT_CSS}px) {
+@media screen and (min-width: $media-point-css) {
+    .root {
         width: calc(100% - 330px);
     }
-`;
+}

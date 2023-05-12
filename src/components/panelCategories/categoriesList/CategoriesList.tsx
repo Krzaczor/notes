@@ -2,14 +2,14 @@ import { useCategoriesState } from 'context/categoriesContext';
 import { closePanelCategories } from 'context/panelCategoriesContext';
 import { useCategory } from 'hooks/useCategory';
 import CategoryItem from './categoryItem/CategoryItem';
-import * as S from './CategoriesList.styles';
+import s from './CategoriesList.module.scss';
 
 const CategoriesList = () => {
     const { categoryId } = useCategory();
     const { categories } = useCategoriesState();
 
     return (
-        <S.CategoriesList>
+        <ul className={s.root}>
             <CategoryItem
                 name='Wszystkie notatki'
                 to='/all'
@@ -26,7 +26,7 @@ const CategoriesList = () => {
                     onCloseCategory={closePanelCategories}
                 />
             ))}
-        </S.CategoriesList>
+        </ul>
     )
 }
 

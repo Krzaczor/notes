@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { useFocus } from 'hooks/useFocus';
 import useOnClickOutside from 'hooks/useOnClickOutside';
-import * as S from './MoreOptions.styles';
+import s from './MoreOptions.module.scss';
 import { OptionsProps, Props } from './MoreOptions.types';
 
 const Options = ({ show, onClose, listRef, children }: OptionsProps) => {
@@ -10,7 +10,10 @@ const Options = ({ show, onClose, listRef, children }: OptionsProps) => {
     useOnClickOutside(listRef, onClose);
 
     return (
-        <S.Options style={{ transform: `translateY(40px)` }} {...focus}>{ children }</S.Options>
+        <div
+            className={s.optionsMore} 
+            style={{ transform: `translateY(40px)` }} {...focus}
+        >{ children }</div>
     )
 }
 
@@ -18,7 +21,7 @@ const MoreOptions = ({ show, onClose, element, children }: Props) => {
     const listRef = useRef<HTMLDivElement>(null!);
 
     return (
-        <S.MoreOptions ref={listRef}>
+        <div className={s.root} ref={listRef}>
             { element }
             { show && (
                 <Options
@@ -29,7 +32,7 @@ const MoreOptions = ({ show, onClose, element, children }: Props) => {
                     { children }
                 </Options>
             ) }
-        </S.MoreOptions>
+        </div>
     )
 }
 

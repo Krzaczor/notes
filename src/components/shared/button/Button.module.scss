@@ -1,0 +1,59 @@
+.root {
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: var(--radius);
+    color: var(--color-text);
+    cursor: pointer;
+    display: inline-block;
+    font-size: 1rem;
+    min-width: 40px;
+    padding: 0.5rem;
+    text-decoration: none;
+    text-align: center;
+    vertical-align: middle;
+    
+    & svg {
+        vertical-align: middle;
+        color: var(--color-text);
+    }
+}
+
+// variants
+
+.primary {
+    background-color: var(--color-primary);
+    color: var(--color-light);
+}
+
+.second {
+    background-color: var(--color-background);
+    color: var(--color-light);
+}
+
+.outline-danger {
+    border-color: var(--color-gray);
+    color: var(--color-text);
+}
+
+.dark {
+    background-color: var(--color-background-darkest);
+    color: var(--color-text);
+}
+
+// fluid
+
+.fluid {
+    width: 100%;
+}
+
+// sizes
+
+.normal {
+    font-size: 1rem;
+    padding: 0.5rem;
+}
+
+.lg {
+    font-size: 1.1rem;
+    padding: 0.7rem;
+}

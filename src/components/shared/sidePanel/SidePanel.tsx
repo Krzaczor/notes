@@ -1,8 +1,8 @@
 import { useEffect, cloneElement, ReactElement } from 'react';
 import { createPortal } from 'react-dom';
-import { Transition, easings } from 'react-spring';
+import { animated, Transition, easings } from 'react-spring';
 import { useFocus } from 'hooks/useFocus';
-import * as S from './SidePanel.styles';
+import s from './SidePanel.module.scss';
 import { Props } from './SidePanel.types';
 
 const sides = {
@@ -90,10 +90,10 @@ const SidePanelPortal = ({ show, onClose, showOverlay = false, animateFrom, chil
     return (
         <>
             <TransitionOverlay canShow={show && showOverlay}>
-                <S.Overlay onClick={onClose} />
+                <animated.div className={s.overlay} onClick={onClose} />
             </TransitionOverlay>
             <TransitionContent canShow={show} animateFrom={animateFrom}>
-                <S.SidePanel {...focus}>{ children }</S.SidePanel>
+                <animated.div className={s.root} {...focus}>{ children }</animated.div>
             </TransitionContent>
         </>
     );

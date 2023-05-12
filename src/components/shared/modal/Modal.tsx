@@ -1,7 +1,7 @@
 import { createPortal } from 'react-dom';
 import { Transition } from 'react-spring';
 import Button from 'components/shared/button/Button';
-import * as S from './Modal.styles';
+import s from './Modal.module.scss';
 import { useFocus } from 'hooks/useFocus';
 
 interface Props {
@@ -31,20 +31,20 @@ const ModalPortal = ({
         >
             {(styles, item) => (
                 item && (
-                    <S.ModalContainer>
-                        <S.Modal
+                    <div className={s.modalContainer}>
+                        <div className={s.root}
                             style={styles}
                             {...focus}
                         >
-                            { title && <S.Header>{ title }</S.Header> }
-                            <S.Body>{ message }</S.Body>
-                            <S.Actions>
+                            { title && <p className={s.modalHeader}>{ title }</p> }
+                            <p className={s.modalBody}>{ message }</p>
+                            <div className={s.modalActions}>
                                 {contentCancel && <Button fluid size='lg' variant='primary' onClick={onCancel}>{contentCancel}</Button>}
                                 <Button fluid={!!contentCancel} size='lg' variant='outline-danger' onClick={onConfirm}>{contentConfirm}</Button>
-                            </S.Actions>
-                        </S.Modal>
-                        <S.Overlay style={styles} onClick={onCancel} />
-                    </S.ModalContainer>
+                            </div>
+                        </div>
+                        <div className={s.overlay} style={styles} onClick={onCancel} />
+                    </div>
                 )
             )}
         </Transition>

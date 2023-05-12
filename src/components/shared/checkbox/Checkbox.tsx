@@ -1,5 +1,5 @@
 import { useId } from 'react';
-import * as S from './Checkbox.styles';
+import s from './Checkbox.module.scss';
 
 interface Props {
     checked: boolean;
@@ -11,13 +11,14 @@ const Checkbox = ({ checked, onChange }: Props) => {
 
     return (
         <>
-            <S.Input
+            <input
+                className={s.root}
                 type='checkbox'
                 id={id}
                 checked={checked}
                 onChange={onChange}
             />
-            <S.Checkbox htmlFor={id} />
+            <label className={s.label} htmlFor={id} />
         </>
     )
 }

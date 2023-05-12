@@ -1,7 +1,7 @@
 import { useSettingsState } from 'context/settingsContext';
 import Time from 'components/shared/time/Time';
 import NoteContent from 'components/noteContent/NoteContent';
-import * as S from './NoteItem.styles';
+import s from './NoteItem.module.scss';
 import { Props } from './NoteItem.types';
 
 const NoteInfo = ({ note }: Props) => {
@@ -12,16 +12,16 @@ const NoteInfo = ({ note }: Props) => {
     }
 
     return (
-        <S.NoteInfo>Utworzono: <Time time={note.createAt} /></S.NoteInfo>
+        <p className={s.noteInfo}>Utworzono: <Time time={note.createAt} /></p>
     )
 }
 
 const NoteItem = ({ note }: Props) => {
     return (
-       <S.NoteItem>
+       <div className={s.root}>
             <NoteInfo note={note} />
            <NoteContent note={note} />
-       </S.NoteItem>
+       </div>
     )
 }
 

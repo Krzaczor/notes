@@ -3,6 +3,7 @@ import Layout from 'layouts/Layout';
 import NoteListPage from 'pages/NoteListPage';
 import NoteItemPage from 'pages/NoteItemPage';
 import NotFoundPage from 'pages/NotFoundPage';
+import 'App.scss';
 
 function App() {
     return (

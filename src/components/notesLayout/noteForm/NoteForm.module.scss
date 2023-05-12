@@ -1,7 +1,6 @@
-import styled from 'styled-components';
-import { MEDIA_POINT_CSS } from 'consts';
+@import '/src/consts.scss';
 
-export const NoteForm = styled.form`
+.root {
     align-items: stretch;
     background-color: var(--color-background);
     display: flex;
@@ -9,12 +8,14 @@ export const NoteForm = styled.form`
     position: fixed;
     bottom: 0;
     width: 100%;
-
+    
     & > *:not(:last-child) {
         margin-right: 10px;
     }
+}
 
-    @media screen and (min-width: ${MEDIA_POINT_CSS}px) {
+@media screen and (min-width: $media-point-css) {
+    .root {
         width: calc(100% - 330px);
     }
-`;
+}

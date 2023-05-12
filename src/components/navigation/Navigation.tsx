@@ -1,11 +1,11 @@
 import { Props } from './Navigation.types';
-import * as S from './Navigation.styles';
+import s from './Navigation.module.scss';
 
 const Navigation = ({ children }: Props) => {
     return (
-        <S.Navigation>
+        <nav className={s.root}>
             { children }
-        </S.Navigation>
+        </nav>
     )
 }
 

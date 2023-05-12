@@ -1,11 +1,11 @@
-import * as S from './EmptyList.style';
+import s from './EmptyList.module.scss';
 
 const EmptyList = () => {
     return (
-        <S.EmptyList>
+        <div className={s.root}>
             <p>Brak notatek do wyświetlenia</p>
             <p>Dodaj notatkę, wybierz lub stwórz kategorie</p>
-        </S.EmptyList>
+        </div>
     )
 }
 
