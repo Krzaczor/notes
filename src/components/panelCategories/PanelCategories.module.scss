@@ -1,0 +1,9 @@
+.container {
+    background-color: var(--color-background-middle);
+    border-right: 1px solid var(--color-background-darkest);
+    color: var(--color-text);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 330px;
+}
