@@ -14,14 +14,6 @@ const settingNames = {
     displayCreateAtNote: 'Wyświetl czas utworzenia',
 }
 
-export const LightModeItem = ({ name }: Props) => {
-    useLightMode();
-
-    return (
-        <SettingItem name={name} />
-    )
-}
-
 export const SettingItem = ({ name }: Props) => {
     const checked = useSettingsState(s => s.settings[name]);
     const { updateSetting } = useSettingsActions();

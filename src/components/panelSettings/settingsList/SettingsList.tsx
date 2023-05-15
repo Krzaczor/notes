@@ -1,5 +1,5 @@
 import { useSettingsState } from 'context/settingsContext';
-import { SettingItem, LightModeItem } from './settingItem/SettingItem';
+import { SettingItem } from './settingItem/SettingItem';
 import s from './SettingsList.module.scss';
 
 const SettingsList = () => {
@@ -8,10 +8,6 @@ const SettingsList = () => {
     return (
         <div className={s.root}>
             {namesSettings.map((name) => {
-                if (name === 'lightMode') {
-                    return <LightModeItem key={name} name={name} />
-                }
-
                 return <SettingItem key={name} name={name} />
             })}
         </div>
