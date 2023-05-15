@@ -1,4 +1,4 @@
-@import '/src/consts.scss';
+@use '/src/styles';
 
 .root {
     background-color: var(--color-background-middle);
@@ -11,7 +11,7 @@
     }
 }
 
-@media screen and (min-width: $media-point-css) {
+@include styles.min-media(styles.$media-point) {
     .root {
         width: calc(100% - 330px);
     }

@@ -1,0 +1,11 @@
+@mixin media($type, $value) {
+    @media ($type: $value) {
+        @content();
+    }
+}
+
+@mixin min-media($value) {
+    @include media(min-width, $value) {
+        @content();
+    }
+}
