@@ -1,0 +1,10 @@
+.root {
+    align-items: center;
+    background-color: var(--color-background);
+    color: var(--color-text);
+    justify-content: center;
+}
+
+.root > *:not(:last-child) {
+    margin-bottom: 15px;
+}

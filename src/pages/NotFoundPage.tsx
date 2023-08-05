@@ -1,13 +1,13 @@
-import Link from 'components/shared/link/Link';
-import NotFound from 'components/notFound/NotFound';
-import Message from 'components/notFound/message/Message';
+import Link from 'features/shared/link/Link';
+import Main from 'features/shared/main/Main';
+import s from './NotFoundPage.module.scss';
 
 const NotFoundPage = () => {
     return (
-        <NotFound>
-            <Message>Uups! Niestety strona nie istnieje.</Message>
+        <Main className={s.root}>
+            <p>Uups! Niestety strona nie istnieje.</p>
             <Link to='/all' variant='dark'>wróć do strony głównej</Link>
-        </NotFound>
+        </Main>
     )
 }
 

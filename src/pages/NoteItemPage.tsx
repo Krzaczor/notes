@@ -1,9 +1,9 @@
 import { useParams } from 'react-router-dom';
 import { useNotesState } from 'context/notesContext';
-import Main from 'components/shared/main/Main';
-import NoteActions from 'components/noteItemLayout/noteActions/NoteActions';
-import NoteNotFound from 'components/noteItemLayout/noteNotFound/NoteNotFound';
-import NoteItem from 'components/noteItemLayout/noteItem/NoteItem';
+import Main from 'features/shared/main/Main';
+import NoteActions from 'features/note/noteActions/NoteActions';
+import NoteNotFound from 'features/note/noteNotFound/NoteNotFound';
+import NoteItem from 'features/note/noteItem/NoteItem';
 
 const NoteItemPage = () => {
     const { notes } = useNotesState();

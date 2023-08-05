@@ -1,33 +1,31 @@
 import { Outlet } from 'react-router-dom';
 import { RiSettings5Fill } from 'react-icons/ri';
 import { showPanelSettings } from 'context/panelSettingsContext';
-import Button from 'components/shared/button/Button';
-import PanelCategories from 'components/panelCategories/PanelCategories';
-import Navigation from 'components/navigation/Navigation';
-import CategoryName from 'components/categoryName/CategoryName';
-import PanelSettings from 'components/panelSettings/PanelSettings';
-import ButtonOpenCategories from 'components/ButtonOpenCategories';
+import Button from 'features/shared/button/Button';
+import PanelCategories from 'features/category/panelCategories/PanelCategories';
+import CategoryName from 'features/category/categoryName/CategoryName';
+import ButtonOpenCategories from 'features/category/ButtonOpenCategories';
+import PanelSettings from 'features/setting/panelSettings/PanelSettings';
+import s from './Layout.module.scss';
 
 const Layout = () => {
     return (
         <div style={{ display: 'flex', height: '100%' }}>
             <PanelCategories>
-                <PanelCategories.Title />
                 <PanelCategories.Form />
                 <PanelCategories.CategoriesList />
             </PanelCategories>
             <div style={{ flex: 1, overflow: 'hidden' }}>
                 <PanelSettings>
-                    <PanelSettings.Title />
                     <PanelSettings.SettingsList />
                 </PanelSettings>
-                <Navigation>
+                <nav className={s.navigation}>
                     <ButtonOpenCategories />
                     <CategoryName />
                     <Button variant='second' onClick={showPanelSettings}>
                         <RiSettings5Fill size={24} />
                     </Button>
-                </Navigation>
+                </nav>
                 <Outlet />
             </div>
         </div>

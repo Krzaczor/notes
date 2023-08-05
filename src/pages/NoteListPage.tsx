@@ -1,9 +1,9 @@
 import { useLocation } from 'react-router-dom';
-import Main from 'components/shared/main/Main';
-import NavNotes from 'components/notesLayout/navNotes/NavNotes';
-import NoteForm from 'components/notesLayout/noteForm/NoteForm';
-import NotesList from 'components/notesLayout/notesList/NotesList';
-import EmptyList from 'components/emptyList/EmptyList';
+import Main from 'features/shared/main/Main';
+import NavNotes from 'features/note/navNotes/NavNotes';
+import NoteForm from 'features/note/noteForm/NoteForm';
+import NotesList from 'features/note/notesList/NotesList';
+import EmptyList from 'features/note/emptyList/EmptyList';
 import { NoteList } from 'types';
 import { withNotes } from 'hocs/withNotes';
 
