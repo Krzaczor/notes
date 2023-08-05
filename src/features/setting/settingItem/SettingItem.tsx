@@ -24,7 +24,7 @@ export const SettingItem = ({ name }: Props) => {
 
     return (
         <div className={s.root}>
-            <p>{ settingNames[name] }</p>
+            <p className={s.name}>{ settingNames[name] }</p>
             <Checkbox onChange={handleToggleSetting} checked={checked} />
         </div>
     )
