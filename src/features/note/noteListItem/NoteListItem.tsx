@@ -6,7 +6,7 @@ import {
     BsCheckCircleFill
 } from 'react-icons/bs';
 import { getUrlCategory } from 'utils/getUrlCategory';
-import { useNotesActions } from 'context/notesContext';
+import { updateOneNote } from 'context/notesContext';
 import Button from 'features/shared/button/Button';
 import s from './NoteItem.module.scss';
 import { Note } from 'types';
@@ -16,7 +16,6 @@ interface Props extends Note {
 }
 
 const NoteItem = ({ id, content, done, priority, categoryId }: Props) => {
-    const { updateOneNote } = useNotesActions();
     const { pathname, search } = useLocation();
 
     const handleToggleDoneNote = () => {

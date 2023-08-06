@@ -8,7 +8,7 @@ import {
     BsExclamationCircleFill
 } from 'react-icons/bs';
 import { FaTrash } from 'react-icons/fa';
-import { useNotesActions } from 'context/notesContext';
+import { removeOneNote, updateOneNote } from 'context/notesContext';
 import Actions from 'features/shared/actions/Actions';
 import Button from 'features/shared/button/Button';
 import Link from 'features/shared/link/Link';
@@ -17,7 +17,6 @@ import Modal from 'features/shared/modal/Modal';
 
 const NoteActions = ({ note }: Props) => {
     const [showModalRemove, setShowModalRemove] = useState(false);
-    const { removeOneNote, updateOneNote } = useNotesActions();
     const location = useLocation();
     const navigate = useNavigate();
 

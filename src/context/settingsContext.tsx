@@ -25,7 +25,7 @@ export const useSettingsState = create(
     )
 )
 
-const updateSetting: UpdateSettingAction = (key) => {
+export const updateSetting: UpdateSettingAction = (key) => {
     useSettingsState.setState((state) => {
         if (key in state.settings) {
             return {
@@ -40,13 +40,8 @@ const updateSetting: UpdateSettingAction = (key) => {
     })
 }
 
-const resetSettings: ResetSettingsAction = () => {
+export const resetSettings: ResetSettingsAction = () => {
     useSettingsState.setState({
         settings: initSettings
     });
 }
-
-export const useSettingsActions = () => ({
-    updateSetting,
-    resetSettings,
-})

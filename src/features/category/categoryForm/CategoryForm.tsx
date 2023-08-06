@@ -1,13 +1,12 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { BsPlusLg } from 'react-icons/bs';
-import { useCategoriesActions } from 'context/categoriesContext';
+import { createCategory } from 'context/categoriesContext';
 import Input from 'features/shared/input/Input';
 import Button from 'features/shared/button/Button';
 import s from './CategoryForm.module.scss';
 
 const Form = () => {
     const [name, setName] = useState('');
-    const { createCategory } = useCategoriesActions();
 
     const handleChangeName = (event: ChangeEvent<HTMLInputElement>) => {
         setName(event.target.value);

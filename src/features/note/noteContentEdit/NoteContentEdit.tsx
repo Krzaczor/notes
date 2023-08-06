@@ -1,5 +1,5 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
-import { useNotesActions } from 'context/notesContext';
+import { updateOneNote } from 'context/notesContext';
 import useOnClickEsc from 'hooks/useOnClickEsc';
 import Input from 'features/shared/input/Input';
 import s from './NoteContentEdit.module.scss';
@@ -7,7 +7,6 @@ import { Props } from './NoteContentEdit.types';
 
 const NoteContentEdit = ({ note, onStopEdit }: Props) => {
     const [tempValue, setTempValue] = useState(note.content);
-    const { updateOneNote } = useNotesActions();
 
     const handleTempValue = (event: ChangeEvent<HTMLInputElement>) => {
         setTempValue(event.target.value);

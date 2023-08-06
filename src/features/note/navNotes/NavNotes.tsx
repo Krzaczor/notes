@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { RiMore2Fill } from 'react-icons/ri';
 import clsx from 'clsx';
 import { getUrlCategory } from 'utils/getUrlCategory';
-import { useNotesActions, useNotesState } from 'context/notesContext';
+import { updateManyNotes, removeManyNotes, useNotesState } from 'context/notesContext';
 import { useCategory } from 'hooks/useCategory';
 import Actions from 'features/shared/actions/Actions';
 import Button from 'features/shared/button/Button';
@@ -17,7 +17,6 @@ const getClassesLink = (p: { isActive: boolean }) => {
 const NavNotes = () => {
     const [showMoreOptions, setShowMoreOptions] = useState(false);
     const { notes } = useNotesState();
-    const { updateManyNotes, removeManyNotes } = useNotesActions();
     const btnRef = useRef<HTMLButtonElement>(null!);
     const { categoryId } = useCategory();
 

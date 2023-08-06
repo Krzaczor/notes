@@ -17,7 +17,7 @@ const initNotes: NoteList = [];
 export const useNotesState = create(
     persist<NotesState>(
         () => ({
-            notes: []
+            notes: initNotes
         }),
         {
             name: 'notes/notes'
@@ -25,7 +25,7 @@ export const useNotesState = create(
     )
 )
 
-const createNote: CreateNoteAction = ({ content, category, priority }) => {
+export const createNote: CreateNoteAction = ({ content, category, priority }) => {
     useNotesState.setState(state => ({
         notes: state.notes.concat({
             id: nanoid(8),
@@ -38,7 +38,7 @@ const createNote: CreateNoteAction = ({ content, category, priority }) => {
     }))
 }
 
-const updateOneNote: UpdateOneNoteAction = (id, fields) => {
+export const updateOneNote: UpdateOneNoteAction = (id, fields) => {
     useNotesState.setState(state => ({
         notes: state.notes.map(note => {
             return note.id !== id ? note : Object.assign(note, fields);
@@ -46,7 +46,7 @@ const updateOneNote: UpdateOneNoteAction = (id, fields) => {
     }))
 }
 
-const updateManyNotes: UpdateManyNotesAction = (ids, fields) => {
+export const updateManyNotes: UpdateManyNotesAction = (ids, fields) => {
     useNotesState.setState(state => ({
         notes: state.notes.map(note => {
             return !ids.includes(note.id) ? note : Object.assign(note, fields);
@@ -54,29 +54,20 @@ const updateManyNotes: UpdateManyNotesAction = (ids, fields) => {
     }))
 }
 
-const removeOneNote: RemoveOneNoteAction = (id) => {
+export const removeOneNote: RemoveOneNoteAction = (id) => {
     useNotesState.setState(state => ({
         notes: state.notes.filter(note => note.id !== id)
     }));
 }
 
-const removeManyNotes: RemoveManyNotesAction = (ids) => {
+export const removeManyNotes: RemoveManyNotesAction = (ids) => {
     useNotesState.setState(state => ({
         notes: state.notes.filter(note => !ids.includes(note.id))
     }));
 }
 
-const removeAllNotes: RemoveAllNotesAction = () => {
+export const removeAllNotes: RemoveAllNotesAction = () => {
     useNotesState.setState({
         notes: initNotes
     });
 }
-
-export const useNotesActions = () => ({
-    createNote,
-    updateOneNote,
-    updateManyNotes,
-    removeOneNote,
-    removeManyNotes,
-    removeAllNotes
-})

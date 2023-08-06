@@ -1,5 +1,4 @@
-import { useSettingsActions, useSettingsState } from 'context/settingsContext';
-import { useLightMode } from 'hooks/useLightMode';
+import { updateSetting, useSettingsState } from 'context/settingsContext';
 import Checkbox from 'features/shared/checkbox/Checkbox';
 import s from './SettingItem.module.scss';
 import { Settings } from 'types';
@@ -16,7 +15,6 @@ const settingNames = {
 
 export const SettingItem = ({ name }: Props) => {
     const checked = useSettingsState(s => s.settings[name]);
-    const { updateSetting } = useSettingsActions();
 
     const handleToggleSetting = () => {
         updateSetting(name);

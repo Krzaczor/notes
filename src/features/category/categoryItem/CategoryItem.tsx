@@ -1,19 +1,17 @@
 import { useState } from 'react';
 import { FaTrash } from 'react-icons/fa';
 import Link from 'features/shared/link/Link';
-import { useCategoriesActions } from 'context/categoriesContext';
+import { removeOneCategory } from 'context/categoriesContext';
 import Modal from 'features/shared/modal/Modal';
 import Button from 'features/shared/button/Button';
 import s from './CategoryItem.module.scss';
 import { Props } from './CategoryItem.types';
-import { useNotesActions, useNotesState } from 'context/notesContext';
+import { removeManyNotes, useNotesState } from 'context/notesContext';
 import clsx from 'clsx';
 
 const CategoryItem = ({ id, name, isActive, to, onCloseCategory }: Props) => {
     const [toRemove, setToRemove] = useState(false);
-    const { removeOneCategory } = useCategoriesActions();
-    const { notes } = useNotesState();
-    const { removeManyNotes } = useNotesActions();
+    const notes = useNotesState(state => state.notes);
 
     const handleToRemove = () => {
         setToRemove(true);

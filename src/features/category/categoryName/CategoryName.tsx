@@ -1,5 +1,5 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
-import { useCategoriesActions } from 'context/categoriesContext';
+import { updateOneCategory } from 'context/categoriesContext';
 import { useCategory } from 'hooks/useCategory';
 import useOnClickEsc from 'hooks/useOnClickEsc';
 import Input from 'features/shared/input/Input';
@@ -13,7 +13,6 @@ interface NameEditProps {
 
 const CategoryNameEdit = ({ category, onStopEdit }: NameEditProps) => {
     const [tempValue, setTempValue] = useState(() => category?.name || '');
-    const { updateOneCategory } = useCategoriesActions();
 
     const handleTempValue = (event: ChangeEvent<HTMLInputElement>) => {
         setTempValue(event.target.value);

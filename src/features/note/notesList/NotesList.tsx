@@ -1,5 +1,5 @@
 import { useCategory } from 'hooks/useCategory';
-import NoteItem from '../noteListItem/NoteItem';
+import NoteListItem from '../noteListItem/NoteListItem';
 import s from './NotesList.module.scss';
 import { Props } from './NotesList.types';
 
@@ -9,7 +9,7 @@ const NotesList = ({ notes }: Props) => {
     return (
         <ul className={s.root}>
             {notes.map((note) => (
-                <NoteItem
+                <NoteListItem
                     key={note.id}
                     categoryId={categoryId}
                     {...note}
