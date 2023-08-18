@@ -25,11 +25,14 @@ const NoteListPage = ({ notes, categoryId }: Props) => {
 
     return (
         <Main>
-            { notes.length > 0 && <NavNotes /> }
-            { notesList.length > 0
-                ? <NotesList notes={notesList} /> 
-                : <EmptyList />
-            }
+            { notes.length > 0 ? (
+                <>
+                    <NavNotes />
+                    <NotesList notes={notesList} />
+                </>
+            ) : (
+                <EmptyList />
+            )}
             { categoryId ? <NoteForm category={categoryId} /> : null }
         </Main>
     )

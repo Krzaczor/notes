@@ -1,7 +1,7 @@
 import { Category } from 'types';
 
 export interface Props {
-    id?: Category['id'];
+    id: Category['id'];
     name: string;
     isActive: boolean;
     to: string;

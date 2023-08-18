@@ -12,7 +12,7 @@ import s from './NoteItem.module.scss';
 import { Note } from 'types';
 
 interface Props extends Note {
-    categoryId: string | undefined;
+    categoryId: string | null;
 }
 
 const NoteItem = ({ id, content, done, priority, categoryId }: Props) => {

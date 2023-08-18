@@ -11,7 +11,9 @@ import clsx from 'clsx';
 
 const CategoryItem = ({ id, name, isActive, to, onCloseCategory }: Props) => {
     const [toRemove, setToRemove] = useState(false);
-    const notes = useNotesState(state => state.notes);
+    const noteIds = useNotesState(
+        state => state.notes.filter(note => note.category === id).map(note => note.id)
+    );
 
     const handleToRemove = () => {
         setToRemove(true);
@@ -22,14 +24,8 @@ const CategoryItem = ({ id, name, isActive, to, onCloseCategory }: Props) => {
     }
 
     const handleConfirm = () => {
-        if (!id) return;
-
-        const notesIdToNotes = notes
-            .filter(note => note.category === id)
-            .map(note => note.id);
-
         removeOneCategory(id);
-        removeManyNotes(notesIdToNotes);
+        removeManyNotes(noteIds);
         setToRemove(false);
     }
 
