@@ -15,7 +15,7 @@ const initCategories: CategoryList = [];
 export const useCategoriesState = create(
     persist<CategoriesState>(
         () => ({
-            categories: [],
+            categories: initCategories,
         }),
         {
             name: 'notes/categories'
@@ -23,7 +23,7 @@ export const useCategoriesState = create(
     )
 )
 
-const createCategory: CreateCategoryAction = (category) => {
+export const createCategory: CreateCategoryAction = (category) => {
     useCategoriesState.setState(state => ({
         categories: state.categories.concat({
             id: nanoid(8),
@@ -33,7 +33,7 @@ const createCategory: CreateCategoryAction = (category) => {
     }))
 }
 
-const updateOneCategory: UpdateOneCategoryAction = (id, fields) => {
+export const updateOneCategory: UpdateOneCategoryAction = (id, fields) => {
     useCategoriesState.setState(state => ({
         categories: state.categories.map(category => {
             if (category.id === id) {
@@ -45,7 +45,7 @@ const updateOneCategory: UpdateOneCategoryAction = (id, fields) => {
     }))
 }
 
-const removeOneCategory: RemoveOneCategoryAction = (id) => {
+export const removeOneCategory: RemoveOneCategoryAction = (id) => {
     useCategoriesState.setState(state => ({
         categories: state.categories.filter(category => {
             return category.id !== id;
@@ -53,15 +53,8 @@ const removeOneCategory: RemoveOneCategoryAction = (id) => {
     }));
 }
 
-const removeAllCategories: RemoveAllCategoriesAction = () => {
+export const removeAllCategories: RemoveAllCategoriesAction = () => {
     useCategoriesState.setState({
         categories: initCategories
     });
 }
-
-export const useCategoriesActions = () => ({
-    createCategory,
-    updateOneCategory,
-    removeOneCategory,
-    removeAllCategories
-})

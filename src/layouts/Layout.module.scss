@@ -1,0 +1,22 @@
+@use '/src/styles';
+
+.navigation {
+    align-items: center;
+    background-color: var(--color-background-darkest);
+    color: var(--color-text);
+    display: flex;
+    height: 60px;
+    padding: 10px var(--padding-container);
+    position: fixed;
+    width: 100%;
+    
+    & > *:not(:last-child) {
+        margin-right: 15px;
+    }
+}
+
+@include styles.min-media(styles.$media-point) {
+    .navigation {
+        width: calc(100% - 330px);
+    }
+}
