@@ -14,18 +14,10 @@ export interface Note {
     content: string;
     done: Date | null;
     createAt: Date;
-    priority: boolean;
     category: Category['id'];
 }
 
 export type NoteList = Note[];
-export type AdderNote = Pick<Note, 'content' | 'priority' | 'category'>;
+export type AdderNote = Pick<Note, 'content' | 'category'>;
 export type UpdaterNote = Partial<Omit<Note, 'id' | 'createAt'>>;
 export type RemoverNote = Note['id'];
-
-export interface Settings {
-    // [key: string]: boolean;
-    lightMode: boolean;
-    defaultPriority: boolean;
-    displayCreateAtNote: boolean;
-}

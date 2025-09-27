@@ -9,7 +9,7 @@ import { useCategory } from 'hooks/useCategory';
 import Actions from 'features/shared/actions/Actions';
 import Button from 'features/shared/button/Button';
 import MoreOptions from 'features/shared/moreOptions/MoreOptions';
-import { basePath, priorityPath, undonePath } from 'config/router';
+import { basePath, undonePath } from 'config/router';
 import s from './NavNotes.module.scss';
 
 const getClassesLink = (p: { isActive: boolean }) => {
@@ -38,14 +38,6 @@ const NavNotes = () => {
         removeManyNotes(notesIds);
     }
 
-    const handlePriorityAllNotes = () => {
-        updateManyNotes(notesIds, { priority: true });
-    }
-
-    const handleUnpriorityAllNotes = () => {
-        updateManyNotes(notesIds, { priority: false });
-    }
-
     const handleDoneAllNotes = () => {
         updateManyNotes(notesIds, { done: new Date() });
     }
@@ -65,15 +57,12 @@ const NavNotes = () => {
                     </Button>
                 )}
             >
-                <Button fluid onClick={handlePriorityAllNotes}>oznacz zadania jako ważne</Button>
-                <Button fluid onClick={handleUnpriorityAllNotes}>oznacz zadania jako nieważne</Button>
                 <Button fluid onClick={handleDoneAllNotes}>oznacz zadania jako zatwierdzone</Button>
                 <Button fluid onClick={handleUndoneAllNotes}>oznacz zadania jako niezatwierdzone</Button>
                 <Button fluid variant='outline-danger' onClick={handleRemoveAllNotes}>usuń wszystkie zadania</Button>
             </MoreOptions>
             <NavLink className={getClassesLink} to={getUrlCategory(basePath, categoryId)} replace>ogółem</NavLink>
             <NavLink className={getClassesLink} to={getUrlCategory(undonePath, categoryId)} replace>nie zrobione</NavLink>
-            <NavLink className={getClassesLink} to={getUrlCategory(priorityPath, categoryId)} replace>ważne</NavLink>
         </Actions>
     );
 }

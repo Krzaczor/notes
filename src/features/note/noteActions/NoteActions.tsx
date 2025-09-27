@@ -1,12 +1,7 @@
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
-import {
-    BsCheckCircle,
-    BsCheckCircleFill,
-    BsExclamationCircle,
-    BsExclamationCircleFill
-} from 'react-icons/bs';
+import { BsCheckCircle, BsCheckCircleFill } from 'react-icons/bs';
 import { FaTrash } from 'react-icons/fa';
 import { removeOneNote, updateOneNote } from 'context/notesContext';
 import Actions from 'features/shared/actions/Actions';
@@ -41,12 +36,6 @@ const NoteActions = ({ note }: Props) => {
         })
     }
 
-    const handleTogglePriorityNote = () => {
-        updateOneNote(note.id, {
-            priority: !note.priority
-        })
-    }
-
     return (
         <Actions>
             <Link to={prevLocation}>
@@ -57,13 +46,6 @@ const NoteActions = ({ note }: Props) => {
                     <BsCheckCircleFill color='var(--color-success)' size={22} />
                 ) : (
                     <BsCheckCircle color='var(--color-text)' size={22} />
-                )}
-            </Button>
-            <Button variant='second' onClick={handleTogglePriorityNote}>
-                {note.priority ? (
-                    <BsExclamationCircleFill color='var(--color-info)' size={22} />
-                ) : (
-                    <BsExclamationCircle color='var(--color-text)' size={22} />
                 )}
             </Button>
             <Button variant='second' onClick={handleShowModal}>

@@ -25,13 +25,12 @@ export const useNotesState = create(
     )
 )
 
-export const createNote: CreateNoteAction = ({ content, category, priority }) => {
+export const createNote: CreateNoteAction = ({ content, category }) => {
     useNotesState.setState(state => ({
         notes: state.notes.concat({
             id: nanoid(8),
             createAt: new Date(),
             done: null,
-            priority,
             category,
             content,
         })

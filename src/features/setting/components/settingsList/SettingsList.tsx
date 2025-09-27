@@ -1,14 +1,14 @@
-import { useSettingsState } from 'context/settingsContext';
+import { useSettingsState } from '../../store/settings.store';
 import { SettingItem } from '../settingItem/SettingItem';
 import s from './SettingsList.module.scss';
 
 const SettingsList = () => {
-    const namesSettings = useSettingsState(s => s.namesSetings);
+    const settings = useSettingsState(state => state.settings);
 
     return (
         <div className={s.root}>
-            {namesSettings.map((name) => {
-                return <SettingItem key={name} name={name} />
+            {settings.map((item) => {
+                return <SettingItem key={item.name} name={item.name} />
             })}
         </div>
     )

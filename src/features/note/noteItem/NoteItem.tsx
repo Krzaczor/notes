@@ -1,13 +1,14 @@
-import { useSettingsState } from 'context/settingsContext';
+import { useSettingsState } from 'features/setting/store/settings.store';
 import Time from 'features/shared/time/Time';
 import NoteContent from 'features/note/noteContent/NoteContent';
 import s from './NoteItem.module.scss';
 import { Props } from './NoteItem.types';
 
 const NoteInfo = ({ note }: Props) => {
-    const displayCreateAtNote = useSettingsState((s) => s.settings.displayCreateAtNote);
+    const settings = useSettingsState((s) => s.settings);
+    const displayCreateAtNote = settings.find(s => s.name === 'displayCreateAtNote')
 
-    if (!displayCreateAtNote) {
+    if (!displayCreateAtNote || !displayCreateAtNote.value) {
         return null;
     }
 

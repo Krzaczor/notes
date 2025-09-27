@@ -5,7 +5,7 @@ import Button from 'features/shared/button/Button';
 import PanelCategories from 'features/category/panelCategories/PanelCategories';
 import CategoryName from 'features/category/categoryName/CategoryName';
 import ButtonOpenCategories from 'features/category/ButtonOpenCategories';
-import PanelSettings from 'features/setting/panelSettings/PanelSettings';
+import PanelSettings from 'features/setting/components/panelSettings/PanelSettings';
 import s from './Layout.module.scss';
 
 const Layout = () => {

@@ -1,7 +1,6 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { BsPlusLg } from 'react-icons/bs';
 import { createNote } from 'context/notesContext';
-import { useSettingsState } from 'context/settingsContext';
 import Button from 'features/shared/button/Button';
 import Input from 'features/shared/input/Input';
 import s from './NoteForm.module.scss';
@@ -12,7 +11,6 @@ interface Props {
 
 const NoteForm = ({ category }: Props) => {
     const [contentValue, setContentValue] = useState('');
-    const defaultPriority = useSettingsState((s) => s.settings.defaultPriority);
 
     const handleChangeContentValue = (event: ChangeEvent<HTMLInputElement>) => {
         setContentValue(event.target.value);
@@ -27,8 +25,7 @@ const NoteForm = ({ category }: Props) => {
 
         createNote({
             category,
-            content: contentValue.trim(),
-            priority: defaultPriority
+            content: contentValue.trim()
         });
 
         setContentValue('');

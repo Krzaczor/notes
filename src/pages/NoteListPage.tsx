@@ -19,8 +19,6 @@ const NoteListPage = ({ notes, categoryId }: Props) => {
     
     if (pathname === '/undone') {
         notesList = notes.filter(note => !note.done);
-    } else if (pathname === '/priority') {
-        notesList = notes.filter(note => note.priority);
     }
 
     return (
